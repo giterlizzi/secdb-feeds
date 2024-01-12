@@ -100,7 +100,17 @@ Security feeds for SecDB (https://secdb.nttzen.cloud)
 | CVE | Description |
 | --- | --- |
 | [CVE-2021-1675](https://secdb.nttzen.cloud/cve/detail/CVE-2021-1675) | Windows Print Spooler Remote Code Execution Vulnerability |
-| [CVE-2021-34527](https://secdb.nttzen.cloud/cve/detail/CVE-2021-34527) | Windows Print Spooler Remote Code Execution Vulnerability |
+| [CVE-2021-34527](https://secdb.nttzen.cloud/cve/detail/CVE-2021-34527) | <p>A remote code execution vulnerability exists when the Windows Print Spooler service improperly performs privileged file operations. An attacker who successfully exploited this vulnerability could run arbitrary code with SYSTEM privileges. An attacker could then install programs; view, change, or delete data; or create new accounts with full user rights.</p>
+<p>UPDATE July 7, 2021: The security update for Windows Server 2012, Windows Server 2016 and Windows 10, Version 1607 have been released. Please see the Security Updates table for the applicable update for your system. We recommend that you install these updates immediately. If you are unable to install these updates, see the FAQ and Workaround sections in this CVE for information on how to help protect your system from this vulnerability.</p>
+<p>In addition to installing the updates, in order to secure your system, you must confirm that the following registry settings are set to 0 (zero) or are not defined (<strong>Note</strong>: These registry keys do not exist by default, and therefore are already at the secure setting.), also that your Group Policy setting are correct (see FAQ):</p>
+<ul>
+<li>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint</li>
+<li>NoWarningNoElevationOnInstall = 0 (DWORD) or not defined (default setting)</li>
+<li>UpdatePromptSettings = 0 (DWORD) or not defined (default setting)</li>
+</ul>
+<p><strong>Having NoWarningNoElevationOnInstall set to 1 makes your system vulnerable by design.</strong></p>
+<p>UPDATE July 6, 2021: Microsoft has completed the investigation and has released security updates to address this vulnerability. Please see the Security Updates table for the applicable update for your system. We recommend that you install these updates immediately. If you are unable to install these updates, see the FAQ and Workaround sections in this CVE for information on how to help protect your system from this vulnerability. See also <a href="https://support.microsoft.com/topic/31b91c02-05bc-4ada-a7ea-183b129578a7">KB5005010: Restricting installation of new printer drivers after applying the July 6, 2021 updates</a>.</p>
+<p>Note that the security updates released on and after July 6, 2021 contain protections for CVE-2021-1675 and the additional remote code execution exploit in the Windows Print Spooler service known as “PrintNightmare”, documented in CVE-2021-34527.</p> |
 
 
 ## KRACK
@@ -140,7 +150,8 @@ Security feeds for SecDB (https://secdb.nttzen.cloud)
 
 | CVE | Description |
 | --- | --- |
-| [CVE-2022-30190](https://secdb.nttzen.cloud/cve/detail/CVE-2022-30190) | Microsoft Windows Support Diagnostic Tool (MSDT) Remote Code Execution Vulnerability. |
+| [CVE-2022-30190](https://secdb.nttzen.cloud/cve/detail/CVE-2022-30190) | <p>A remote code execution vulnerability exists when MSDT is called using the URL protocol from a calling application such as Word. An attacker who successfully exploits this vulnerability can run arbitrary code with the privileges of the calling application. The attacker can then install programs, view, change, or delete data, or create new accounts in the context allowed by the user’s rights.</p>
+<p>Please see the <a href="https://aka.ms/CVE-2022-30190-Guidance">MSRC Blog Entry</a> for important information about steps you can take to protect your system from this vulnerability.</p> |
 
 
 ## BlueBorne
@@ -175,8 +186,8 @@ Security feeds for SecDB (https://secdb.nttzen.cloud)
 
 | CVE | Description |
 | --- | --- |
-| [CVE-2022-41040](https://secdb.nttzen.cloud/cve/detail/CVE-2022-41040) | Microsoft Exchange Server Elevation of Privilege Vulnerability. |
-| [CVE-2022-41082](https://secdb.nttzen.cloud/cve/detail/CVE-2022-41082) | Microsoft Exchange Server Remote Code Execution Vulnerability. |
+| [CVE-2022-41040](https://secdb.nttzen.cloud/cve/detail/CVE-2022-41040) | Microsoft Exchange Server Elevation of Privilege Vulnerability |
+| [CVE-2022-41082](https://secdb.nttzen.cloud/cve/detail/CVE-2022-41082) | Microsoft Exchange Server Remote Code Execution Vulnerability |
 
 
 ## Text4Shell
@@ -355,6 +366,15 @@ Security feeds for SecDB (https://secdb.nttzen.cloud)
 | CVE | Description |
 | --- | --- |
 | [CVE-2022-0847](https://secdb.nttzen.cloud/cve/detail/CVE-2022-0847) | A flaw was found in the way the "flags" member of the new pipe buffer structure was lacking proper initialization in copy_page_to_iter_pipe and push_pipe functions in the Linux kernel and could thus contain stale values. An unprivileged local user could use this flaw to write to pages in the page cache backed by read only files and as such escalate their privileges on the system. |
+
+
+## Terrapin
+
+### CVEs
+
+| CVE | Description |
+| --- | --- |
+| [CVE-2023-48795](https://secdb.nttzen.cloud/cve/detail/CVE-2023-48795) | The SSH transport protocol with certain OpenSSH extensions, found in OpenSSH before 9.6 and other products, allows remote attackers to bypass integrity checks such that some packets are omitted (from the extension negotiation message), and a client and server may consequently end up with a connection for which some security features have been downgraded or disabled, aka a Terrapin attack. This occurs because the SSH Binary Packet Protocol (BPP), implemented by these extensions, mishandles the handshake phase and mishandles use of sequence numbers. For example, there is an effective attack against SSH's use of ChaCha20-Poly1305 (and CBC with Encrypt-then-MAC). The bypass occurs in chacha20-poly1305@openssh.com and (if CBC is used) the -etm@openssh.com MAC algorithms. This also affects Maverick Synergy Java SSH API before 3.1.0-SNAPSHOT, Dropbear through 2022.83, Ssh before 5.1.1 in Erlang/OTP, PuTTY before 0.80, AsyncSSH before 2.14.2, golang.org/x/crypto before 0.17.0, libssh before 0.10.6, libssh2 through 1.11.0, Thorn Tech SFTP Gateway before 3.4.6, Tera Term before 5.1, Paramiko before 3.4.0, jsch before 0.2.15, SFTPGo before 2.5.6, Netgate pfSense Plus through 23.09.1, Netgate pfSense CE through 2.7.2, HPN-SSH through 18.2.0, ProFTPD before 1.3.8b (and before 1.3.9rc2), ORYX CycloneSSH before 2.3.4, NetSarang XShell 7 before Build 0144, CrushFTP before 10.6.0, ConnectBot SSH library before 2.2.22, Apache MINA sshd through 2.11.0, sshj through 0.37.0, TinySSH through 20230101, trilead-ssh2 6401, LANCOM LCOS and LANconfig, FileZilla before 3.66.4, Nova before 11.8, PKIX-SSH before 14.4, SecureCRT before 9.4.3, Transmit5 before 5.10.4, Win32-OpenSSH before 9.5.0.0p1-Beta, WinSCP before 6.2.2, Bitvise SSH Server before 9.32, Bitvise SSH Client before 9.33, KiTTY through 0.76.1.13, the net-ssh gem 7.2.0 for Ruby, the mscdex ssh2 module before 1.15.0 for Node.js, the thrussh library before 0.35.1 for Rust, and the Russh crate before 0.40.2 for Rust. |
 
 
 
