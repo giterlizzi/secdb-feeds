@@ -386,4 +386,13 @@ Security feeds for SecDB (https://secdb.nttzen.cloud)
 | [CVE-2023-50387](https://secdb.nttzen.cloud/cve/detail/CVE-2023-50387) | Certain DNSSEC aspects of the DNS protocol (in RFC 4033, 4034, 4035, 6840, and related RFCs) allow remote attackers to cause a denial of service (CPU consumption) via one or more DNSSEC responses, aka the "KeyTrap" issue. One of the concerns is that, when there is a zone with many DNSKEY and RRSIG records, the protocol specification implies that an algorithm must evaluate all combinations of DNSKEY and RRSIG records. |
 
 
+## Wall-Escape
+
+### CVEs
+
+| CVE | Description |
+| --- | --- |
+| [CVE-2024-28085](https://secdb.nttzen.cloud/cve/detail/CVE-2024-28085) | wall in util-linux through 2.40, often installed with setgid tty permissions, allows escape sequences to be sent to other users' terminals through argv. (Specifically, escape sequences received from stdin are blocked, but escape sequences received from argv are not blocked.) There may be plausible scenarios where this leads to account takeover. |
+
+
 
