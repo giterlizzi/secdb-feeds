@@ -395,4 +395,17 @@ Security feeds for SecDB (https://secdb.nttzen.cloud)
 | [CVE-2024-28085](https://secdb.nttzen.cloud/cve/detail/CVE-2024-28085) | wall in util-linux through 2.40, often installed with setgid tty permissions, allows escape sequences to be sent to other users' terminals through argv. (Specifically, escape sequences received from stdin are blocked, but escape sequences received from argv are not blocked.) There may be plausible scenarios where this leads to account takeover. |
 
 
+## Flipping Pages
+
+### CVEs
+
+| CVE | Description |
+| --- | --- |
+| [CVE-2024-1086](https://secdb.nttzen.cloud/cve/detail/CVE-2024-1086) | A use-after-free vulnerability in the Linux kernel's netfilter: nf_tables component can be exploited to achieve local privilege escalation.
+
+The nft_verdict_init() function allows positive values as drop error within the hook verdict, and hence the nf_hook_slow() function can cause a double free vulnerability when NF_DROP is issued with a drop error which resembles NF_ACCEPT.
+
+We recommend upgrading past commit f342de4e2f33e0e39165d8639387aa6c19dff660. |
+
+
 
