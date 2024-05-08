@@ -408,4 +408,13 @@ The nft_verdict_init() function allows positive values as drop error within the 
 We recommend upgrading past commit f342de4e2f33e0e39165d8639387aa6c19dff660. |
 
 
+## TunnelVision
+
+### CVEs
+
+| CVE | Description |
+| --- | --- |
+| [CVE-2024-3661](https://secdb.nttzen.cloud/cve/detail/CVE-2024-3661) | By design, the DHCP protocol does not authenticate messages, including for example the classless static route option (121). An attacker with the ability to send DHCP messages can manipulate routes to redirect VPN traffic, allowing the attacker to read, disrupt, or possibly modify network traffic that was expected to be protected by the VPN. Many, if not most VPN systems based on IP routing are susceptible to such attacks. |
+
+
 
