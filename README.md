@@ -414,7 +414,16 @@ We recommend upgrading past commit f342de4e2f33e0e39165d8639387aa6c19dff660. |
 
 | CVE | Description |
 | --- | --- |
-| [CVE-2024-3661](https://secdb.nttzen.cloud/cve/detail/CVE-2024-3661) | By design, the DHCP protocol does not authenticate messages, including for example the classless static route option (121). An attacker with the ability to send DHCP messages can manipulate routes to redirect VPN traffic, allowing the attacker to read, disrupt, or possibly modify network traffic that was expected to be protected by the VPN. Many, if not most VPN systems based on IP routing are susceptible to such attacks. |
+| [CVE-2024-3661](https://secdb.nttzen.cloud/cve/detail/CVE-2024-3661) | DHCP can add routes to a client’s routing table via the classless static route option (121). VPN-based security solutions that rely on routes to redirect traffic can be forced to leak traffic over the physical interface. An attacker on the same local network can read, disrupt, or possibly modify network traffic that was expected to be protected by the VPN. |
+
+
+## SSID Confusion Attack
+
+### CVEs
+
+| CVE | Description |
+| --- | --- |
+| [CVE-2023-52424](https://secdb.nttzen.cloud/cve/detail/CVE-2023-52424) |  |
 
 
 
