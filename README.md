@@ -150,8 +150,8 @@ Security feeds for SecDB (https://secdb.nttzen.cloud)
 
 | CVE | Description |
 | --- | --- |
-| [CVE-2022-30190](https://secdb.nttzen.cloud/cve/detail/CVE-2022-30190) | <p>A remote code execution vulnerability exists when MSDT is called using the URL protocol from a calling application such as Word. An attacker who successfully exploits this vulnerability can run arbitrary code with the privileges of the calling application. The attacker can then install programs, view, change, or delete data, or create new accounts in the context allowed by the user’s rights.</p>
-<p>Please see the <a href="https://aka.ms/CVE-2022-30190-Guidance">MSRC Blog Entry</a> for important information about steps you can take to protect your system from this vulnerability.</p> |
+| [CVE-2022-30190](https://secdb.nttzen.cloud/cve/detail/CVE-2022-30190) | A remote code execution vulnerability exists when MSDT is called using the URL protocol from a calling application such as Word. An attacker who successfully exploits this vulnerability can run arbitrary code with the privileges of the calling application. The attacker can then install programs, view, change, or delete data, or create new accounts in the context allowed by the user’s rights.
+Please see the MSRC Blog Entry for important information about steps you can take to protect your system from this vulnerability. |
 
 
 ## BlueBorne
@@ -423,7 +423,16 @@ We recommend upgrading past commit f342de4e2f33e0e39165d8639387aa6c19dff660. |
 
 | CVE | Description |
 | --- | --- |
-| [CVE-2023-52424](https://secdb.nttzen.cloud/cve/detail/CVE-2023-52424) |  |
+| [CVE-2023-52424](https://secdb.nttzen.cloud/cve/detail/CVE-2023-52424) | The IEEE 802.11 standard sometimes enables an adversary to trick a victim into connecting to an unintended or untrusted network with Home WEP, Home WPA3 SAE-loop. Enterprise 802.1X/EAP, Mesh AMPE, or FILS, aka an "SSID Confusion" issue. This occurs because the SSID is not always used to derive the pairwise master key or session keys, and because there is not a protected exchange of an SSID during a 4-way handshake. |
+
+
+## regreSSHion
+
+### CVEs
+
+| CVE | Description |
+| --- | --- |
+| [CVE-2024-6387](https://secdb.nttzen.cloud/cve/detail/CVE-2024-6387) | A signal handler race condition was found in OpenSSH's server (sshd), where a client does not authenticate within LoginGraceTime seconds (120 by default, 600 in old OpenSSH versions), then sshd's SIGALRM handler is called asynchronously. However, this signal handler calls various functions that are not async-signal-safe, for example, syslog(). |
 
 
 
