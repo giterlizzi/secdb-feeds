@@ -444,4 +444,13 @@ We recommend upgrading past commit f342de4e2f33e0e39165d8639387aa6c19dff660. |
 | [CVE-2023-43654](https://secdb.nttzen.cloud/cve/detail/CVE-2023-43654) | TorchServe is a tool for serving and scaling PyTorch models in production. TorchServe default configuration lacks proper input validation, enabling third parties to invoke remote HTTP download requests and write files to the disk. This issue could be taken advantage of to compromise the integrity of the system and sensitive data. This issue is present in versions 0.1.0 to 0.8.1. A user is able to load the model of their choice from any URL that they would like to use. The user of TorchServe is responsible for configuring both the allowed_urls and specifying the model URL to be used. A pull request to warn the user when the default value for allowed_urls is used has been merged in PR #2534. TorchServe release 0.8.2 includes this change. Users are advised to upgrade. There are no known workarounds for this issue. |
 
 
+## MadLicense
+
+### CVEs
+
+| CVE | Description |
+| --- | --- |
+| [CVE-2024-38077](https://secdb.nttzen.cloud/cve/detail/CVE-2024-38077) | Windows Remote Desktop Licensing Service Remote Code Execution Vulnerability |
+
+
 
