@@ -671,3 +671,19 @@ Windows Mark of the Web Security Feature Bypass Vulnerability
 
 
 
+## LDAP Nightmare
+
+### [CVE-2024-49112](https://secdb.nttzen.cloud/cve/detail/CVE-2024-49112)
+
+Windows Lightweight Directory Access Protocol (LDAP) Remote Code Execution Vulnerability
+
+[![CVE-2024-49112](https://secdb.nttzen.cloud/cve/badge/CVE-2024-49112)](https://secdb.nttzen.cloud/cve/detail/CVE-2024-49112)
+
+### [CVE-2024-49113](https://secdb.nttzen.cloud/cve/detail/CVE-2024-49113)
+
+Windows Lightweight Directory Access Protocol (LDAP) Denial of Service Vulnerability
+
+[![CVE-2024-49113](https://secdb.nttzen.cloud/cve/badge/CVE-2024-49113)](https://secdb.nttzen.cloud/cve/detail/CVE-2024-49113)
+
+
+
