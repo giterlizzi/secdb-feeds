@@ -697,3 +697,37 @@ A LogoFAIL issue was discovered in BmpDecoderDxe in Insyde InsydeH2O with kernel
 
 
 
+## IngressNightmare
+
+### [CVE-2025-1097](https://secdb.nttzen.cloud/cve/detail/CVE-2025-1097)
+
+A security issue was discovered in  ingress-nginx https://github.com/kubernetes/ingress-nginx  where the `auth-tls-match-cn` Ingress annotation can be used to inject configuration into nginx. This can lead to arbitrary code execution in the context of the ingress-nginx controller, and disclosure of Secrets accessible to the controller. (Note that in the default installation, the controller can access all Secrets cluster-wide.)
+
+[![CVE-2025-1097](https://secdb.nttzen.cloud/cve/badge/CVE-2025-1097)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-1097)
+
+### [CVE-2025-1098](https://secdb.nttzen.cloud/cve/detail/CVE-2025-1098)
+
+A security issue was discovered in  ingress-nginx https://github.com/kubernetes/ingress-nginx  where the `mirror-target` and `mirror-host` Ingress annotations can be used to inject arbitrary configuration into nginx. This can lead to arbitrary code execution in the context of the ingress-nginx controller, and disclosure of Secrets accessible to the controller. (Note that in the default installation, the controller can access all Secrets cluster-wide.)
+
+[![CVE-2025-1098](https://secdb.nttzen.cloud/cve/badge/CVE-2025-1098)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-1098)
+
+### [CVE-2025-1974](https://secdb.nttzen.cloud/cve/detail/CVE-2025-1974)
+
+A security issue was discovered in Kubernetes where under certain conditions, an unauthenticated attacker with access to the pod network can achieve arbitrary code execution in the context of the ingress-nginx controller. This can lead to disclosure of Secrets accessible to the controller. (Note that in the default installation, the controller can access all Secrets cluster-wide.)
+
+[![CVE-2025-1974](https://secdb.nttzen.cloud/cve/badge/CVE-2025-1974)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-1974)
+
+### [CVE-2025-24513](https://secdb.nttzen.cloud/cve/detail/CVE-2025-24513)
+
+A security issue was discovered in  ingress-nginx https://github.com/kubernetes/ingress-nginx  where attacker-provided data are included in a filename by the ingress-nginx Admission Controller feature, resulting in directory traversal within the container. This could result in denial of service, or when combined with other vulnerabilities, limited disclosure of Secret objects from the cluster.
+
+[![CVE-2025-24513](https://secdb.nttzen.cloud/cve/badge/CVE-2025-24513)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-24513)
+
+### [CVE-2025-24514](https://secdb.nttzen.cloud/cve/detail/CVE-2025-24514)
+
+A security issue was discovered in  ingress-nginx https://github.com/kubernetes/ingress-nginx  where the `auth-url` Ingress annotation can be used to inject configuration into nginx. This can lead to arbitrary code execution in the context of the ingress-nginx controller, and disclosure of Secrets accessible to the controller. (Note that in the default installation, the controller can access all Secrets cluster-wide.)
+
+[![CVE-2025-24514](https://secdb.nttzen.cloud/cve/badge/CVE-2025-24514)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-24514)
+
+
+
