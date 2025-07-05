@@ -731,3 +731,13 @@ A security issue was discovered in  ingress-nginx https://github.com/kubernetes/
 
 
 
+## chwoot
+
+### [CVE-2025-32463](https://secdb.nttzen.cloud/cve/detail/CVE-2025-32463)
+
+Sudo before 1.9.17p1 allows local users to obtain root access because /etc/nsswitch.conf from a user-controlled directory is used with the --chroot option.
+
+[![CVE-2025-32463](https://secdb.nttzen.cloud/cve/badge/CVE-2025-32463)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-32463)
+
+
+
