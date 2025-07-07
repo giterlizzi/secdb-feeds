@@ -741,3 +741,23 @@ Sudo before 1.9.17p1 allows local users to obtain root access because /etc/nsswi
 
 
 
+## CitrixBleed
+
+### [CVE-2023-4966](https://secdb.nttzen.cloud/cve/detail/CVE-2023-4966)
+
+Sensitive information disclosure in NetScaler ADC and NetScaler Gateway when configured as a Gateway (VPN virtual server, ICA Proxy, CVPN, RDP Proxy) or AAA  virtual server.
+
+[![CVE-2023-4966](https://secdb.nttzen.cloud/cve/badge/CVE-2023-4966)](https://secdb.nttzen.cloud/cve/detail/CVE-2023-4966)
+
+
+
+## CitrixBleed 2
+
+### [CVE-2025-5777](https://secdb.nttzen.cloud/cve/detail/CVE-2025-5777)
+
+Insufficient input validation leading to memory overread when the NetScaler is configured as a Gateway (VPN virtual server, ICA Proxy, CVPN, RDP Proxy) OR AAA virtual server
+
+[![CVE-2025-5777](https://secdb.nttzen.cloud/cve/badge/CVE-2025-5777)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-5777)
+
+
+
