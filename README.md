@@ -761,3 +761,33 @@ Insufficient input validation leading to memory overread when the NetScaler is 
 
 
 
+## ToolShell
+
+### [CVE-2025-49706](https://secdb.nttzen.cloud/cve/detail/CVE-2025-49706)
+
+Improper authentication in Microsoft Office SharePoint allows an authorized attacker to perform spoofing over a network.
+
+[![CVE-2025-49706](https://secdb.nttzen.cloud/cve/badge/CVE-2025-49706)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-49706)
+
+### [CVE-2025-49704](https://secdb.nttzen.cloud/cve/detail/CVE-2025-49704)
+
+Improper control of generation of code ('code injection') in Microsoft Office SharePoint allows an authorized attacker to execute code over a network.
+
+[![CVE-2025-49704](https://secdb.nttzen.cloud/cve/badge/CVE-2025-49704)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-49704)
+
+### [CVE-2025-53770](https://secdb.nttzen.cloud/cve/detail/CVE-2025-53770)
+
+Deserialization of untrusted data in on-premises Microsoft SharePoint Server allows an unauthorized attacker to execute code over a network.
+Microsoft is aware that an exploit for CVE-2025-53770 exists in the wild.
+Microsoft is preparing and fully testing a comprehensive update to address this vulnerability.  In the meantime, please make sure that the mitigation provided in this CVE documentation is in place so that you are protected from exploitation.
+
+[![CVE-2025-53770](https://secdb.nttzen.cloud/cve/badge/CVE-2025-53770)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-53770)
+
+### [CVE-2025-53771](https://secdb.nttzen.cloud/cve/detail/CVE-2025-53771)
+
+Improper limitation of a pathname to a restricted directory ('path traversal') in Microsoft Office SharePoint allows an authorized attacker to perform spoofing over a network.
+
+[![CVE-2025-53771](https://secdb.nttzen.cloud/cve/badge/CVE-2025-53771)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-53771)
+
+
+
