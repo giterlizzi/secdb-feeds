@@ -791,3 +791,50 @@ Improper limitation of a pathname to a restricted directory ('path traversal') i
 
 
 
+## ReVault
+
+### [CVE-2025-24311](https://secdb.nttzen.cloud/cve/detail/CVE-2025-24311)
+
+An out-of-bounds read vulnerability exists in the cv_send_blockdata 
+functionality of Dell ControlVault3 prior to 5.15.10.14 and Dell ControlVault3 Plus prior to 6.2.26.36. A specially crafted 
+ControlVault API call can lead to an information leak. An attacker can 
+issue an API call to trigger this vulnerability.
+
+[![CVE-2025-24311](https://secdb.nttzen.cloud/cve/badge/CVE-2025-24311)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-24311)
+
+### [CVE-2025-25050](https://secdb.nttzen.cloud/cve/detail/CVE-2025-25050)
+
+An out-of-bounds write vulnerability exists in the 
+cv_upgrade_sensor_firmware functionality of Dell ControlVault3 prior to 5.15.10.14 and Dell ControlVault 3 Plus prior to 6.2.26.36.
+ A specially crafted ControlVault API call can lead to an out-of-bounds 
+write. An attacker can issue an API call to trigger this vulnerability.
+
+[![CVE-2025-25050](https://secdb.nttzen.cloud/cve/badge/CVE-2025-25050)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-25050)
+
+### [CVE-2025-25215](https://secdb.nttzen.cloud/cve/detail/CVE-2025-25215)
+
+An arbitrary free vulnerability exists in the cv_close functionality of 
+Dell ControlVault3 prior to 5.15.10.14 and Dell ControlVault3 Plus prior to 6.2.26.36. A specially crafted ControlVault API call 
+can lead to an arbitrary free. An attacker can forge a fake session to 
+trigger this vulnerability.
+
+[![CVE-2025-25215](https://secdb.nttzen.cloud/cve/badge/CVE-2025-25215)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-25215)
+
+### [CVE-2025-24922](https://secdb.nttzen.cloud/cve/detail/CVE-2025-24922)
+
+A stack-based buffer overflow vulnerability exists in the 
+securebio_identify functionality of Dell ControlVault3 prior to 5.15.10.14 and Dell ControlVault3 Plus prior to 6.2.26.36. A 
+specially crafted malicious cv_object can lead to a arbitrary code 
+execution. An attacker can issue an API call to trigger this 
+vulnerability.
+
+[![CVE-2025-24922](https://secdb.nttzen.cloud/cve/badge/CVE-2025-24922)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-24922)
+
+### [CVE-2025-24919](https://secdb.nttzen.cloud/cve/detail/CVE-2025-24919)
+
+A deserialization of untrusted input vulnerability exists in the cvhDecapsulateCmd functionality of Dell ControlVault3 prior to 5.15.10.14 and ControlVault3 Plus prior to 6.2.26.36. A specially crafted ControlVault response to a command can lead to arbitrary code execution. An attacker can compromise a ControlVault firmware and have it craft a malicious response to trigger this vulnerability.
+
+[![CVE-2025-24919](https://secdb.nttzen.cloud/cve/badge/CVE-2025-24919)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-24919)
+
+
+
