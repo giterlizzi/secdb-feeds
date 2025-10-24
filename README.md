@@ -765,7 +765,7 @@ Insufficient input validation leading to memory overread when the NetScaler is 
 
 ### [CVE-2025-49706](https://secdb.nttzen.cloud/cve/detail/CVE-2025-49706)
 
-Improper authentication in Microsoft Office SharePoint allows an authorized attacker to perform spoofing over a network.
+Improper authentication in Microsoft Office SharePoint allows an unauthorized attacker to perform spoofing over a network.
 
 [![CVE-2025-49706](https://secdb.nttzen.cloud/cve/badge/CVE-2025-49706)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-49706)
 
@@ -785,7 +785,7 @@ Microsoft is preparing and fully testing a comprehensive update to address this 
 
 ### [CVE-2025-53771](https://secdb.nttzen.cloud/cve/detail/CVE-2025-53771)
 
-Improper limitation of a pathname to a restricted directory ('path traversal') in Microsoft Office SharePoint allows an authorized attacker to perform spoofing over a network.
+Improper authentication in Microsoft Office SharePoint allows an unauthorized attacker to perform spoofing over a network.
 
 [![CVE-2025-53771](https://secdb.nttzen.cloud/cve/badge/CVE-2025-53771)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-53771)
 
@@ -835,6 +835,20 @@ vulnerability.
 A deserialization of untrusted input vulnerability exists in the cvhDecapsulateCmd functionality of Dell ControlVault3 prior to 5.15.10.14 and ControlVault3 Plus prior to 6.2.26.36. A specially crafted ControlVault response to a command can lead to arbitrary code execution. An attacker can compromise a ControlVault firmware and have it craft a malicious response to trigger this vulnerability.
 
 [![CVE-2025-24919](https://secdb.nttzen.cloud/cve/badge/CVE-2025-24919)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-24919)
+
+
+
+## TARmageddon
+
+### References
+- https://edera.dev/stories/tarmageddon (TARmageddon (CVE-2025-62518): RCE Vulnerability Highlights the Challenges of Open Source Abandonware, Edera)
+
+
+### [CVE-2025-62518](https://secdb.nttzen.cloud/cve/detail/CVE-2025-62518)
+
+astral-tokio-tar is a tar archive reading/writing library for async Rust. Versions of astral-tokio-tar prior to 0.5.6 contain a boundary parsing vulnerability that allows attackers to smuggle additional archive entries by exploiting inconsistent PAX/ustar header handling. When processing archives with PAX-extended headers containing size overrides, the parser incorrectly advances stream position based on ustar header size (often zero) instead of the PAX-specified size, causing it to interpret file content as legitimate tar headers. This issue has been patched in version 0.5.6. There are no workarounds.
+
+[![CVE-2025-62518](https://secdb.nttzen.cloud/cve/badge/CVE-2025-62518)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-62518)
 
 
 
