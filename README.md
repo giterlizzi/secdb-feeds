@@ -852,3 +852,13 @@ astral-tokio-tar is a tar archive reading/writing library for async Rust. Versio
 
 
 
+## React2Shell
+
+### [CVE-2025-55182](https://secdb.nttzen.cloud/cve/detail/CVE-2025-55182)
+
+A pre-authentication remote code execution vulnerability exists in React Server Components versions 19.0.0, 19.1.0, 19.1.1, and 19.2.0 including the following packages: react-server-dom-parcel, react-server-dom-turbopack, and react-server-dom-webpack. The vulnerable code unsafely deserializes payloads from HTTP requests to Server Function endpoints.
+
+[![CVE-2025-55182](https://secdb.nttzen.cloud/cve/badge/CVE-2025-55182)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-55182)
+
+
+
