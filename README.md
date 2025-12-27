@@ -854,11 +854,25 @@ astral-tokio-tar is a tar archive reading/writing library for async Rust. Versio
 
 ## React2Shell
 
+### References
+- https://react2shell.com/ (React2Shell (CVE-2025-55182), Official Website)
+
+
 ### [CVE-2025-55182](https://secdb.nttzen.cloud/cve/detail/CVE-2025-55182)
 
 A pre-authentication remote code execution vulnerability exists in React Server Components versions 19.0.0, 19.1.0, 19.1.1, and 19.2.0 including the following packages: react-server-dom-parcel, react-server-dom-turbopack, and react-server-dom-webpack. The vulnerable code unsafely deserializes payloads from HTTP requests to Server Function endpoints.
 
 [![CVE-2025-55182](https://secdb.nttzen.cloud/cve/badge/CVE-2025-55182)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-55182)
+
+
+
+## Mongobleed
+
+### [CVE-2025-14847](https://secdb.nttzen.cloud/cve/detail/CVE-2025-14847)
+
+Mismatched length fields in Zlib compressed protocol headers may allow a read of uninitialized heap memory by an unauthenticated client. This issue affects all MongoDB Server v7.0 prior to 7.0.28 versions, MongoDB Server v8.0 versions prior to 8.0.17, MongoDB Server v8.2 versions prior to 8.2.3, MongoDB Server v6.0 versions prior to 6.0.27, MongoDB Server v5.0 versions prior to 5.0.32, MongoDB Server v4.4 versions prior to 4.4.30, MongoDB Server v4.2 versions greater than or equal to 4.2.0, MongoDB Server v4.0 versions greater than or equal to 4.0.0, and MongoDB Server v3.6 versions greater than or equal to 3.6.0.
+
+[![CVE-2025-14847](https://secdb.nttzen.cloud/cve/badge/CVE-2025-14847)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-14847)
 
 
 
