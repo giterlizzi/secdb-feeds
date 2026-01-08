@@ -876,3 +876,17 @@ Mismatched length fields in Zlib compressed protocol headers may allow a read of
 
 
 
+## Ni8mare
+
+### References
+- https://www.cyera.com/research-labs/ni8mare-unauthenticated-remote-code-execution-in-n8n-cve-2026-21858 (Ni8mare - Unauthenticated Remote Code Execution in n8n (CVE-2026-21858), Research)
+
+
+### [CVE-2026-21858](https://secdb.nttzen.cloud/cve/detail/CVE-2026-21858)
+
+n8n is an open source workflow automation platform. Versions below 1.121.0 enable an attacker to access files on the underlying server through execution of certain form-based workflows. A vulnerable workflow could grant access to an unauthenticated remote attacker, resulting in exposure of sensitive information stored on the system and may enable further compromise depending on deployment configuration and workflow usage. This issue is fixed in version 1.121.0.
+
+[![CVE-2026-21858](https://secdb.nttzen.cloud/cve/badge/CVE-2026-21858)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-21858)
+
+
+
