@@ -884,9 +884,19 @@ Mismatched length fields in Zlib compressed protocol headers may allow a read of
 
 ### [CVE-2026-21858](https://secdb.nttzen.cloud/cve/detail/CVE-2026-21858)
 
-n8n is an open source workflow automation platform. Versions below 1.121.0 enable an attacker to access files on the underlying server through execution of certain form-based workflows. A vulnerable workflow could grant access to an unauthenticated remote attacker, resulting in exposure of sensitive information stored on the system and may enable further compromise depending on deployment configuration and workflow usage. This issue is fixed in version 1.121.0.
+n8n is an open source workflow automation platform. Versions starting with 1.65.0 and below 1.121.0 enable an attacker to access files on the underlying server through execution of certain form-based workflows. A vulnerable workflow could grant access to an unauthenticated remote attacker, resulting in exposure of sensitive information stored on the system and may enable further compromise depending on deployment configuration and workflow usage. This issue is fixed in version 1.121.0.
 
 [![CVE-2026-21858](https://secdb.nttzen.cloud/cve/badge/CVE-2026-21858)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-21858)
+
+
+
+## WhisperPair
+
+### [CVE-2025-36911](https://secdb.nttzen.cloud/cve/detail/CVE-2025-36911)
+
+In key-based pairing, there is a possible ID due to a logic error in the code. This could lead to remote (proximal/adjacent) information disclosure of user's conversations and location with no additional execution privileges needed. User interaction is not needed for exploitation.
+
+[![CVE-2025-36911](https://secdb.nttzen.cloud/cve/badge/CVE-2025-36911)](https://secdb.nttzen.cloud/cve/detail/CVE-2025-36911)
 
 
 
