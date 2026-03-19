@@ -910,3 +910,13 @@ The Metro Development Server, which is opened by the React Native Community CLI,
 
 
 
+## RegPwn
+
+### [CVE-2026-24291](https://secdb.nttzen.cloud/cve/detail/CVE-2026-24291)
+
+Incorrect permission assignment for critical resource in Windows Accessibility Infrastructure (ATBroker.exe) allows an authorized attacker to elevate privileges locally.
+
+[![CVE-2026-24291](https://secdb.nttzen.cloud/cve/card/CVE-2026-24291)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-24291)
+
+
+
