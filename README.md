@@ -920,3 +920,13 @@ Incorrect permission assignment for critical resource in Windows Accessibility I
 
 
 
+## Pack2TheRoot
+
+### [CVE-2026-41651](https://secdb.nttzen.cloud/cve/detail/CVE-2026-41651)
+
+
+
+[![CVE-2026-41651](https://secdb.nttzen.cloud/cve/card/CVE-2026-41651)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-41651)
+
+
+
