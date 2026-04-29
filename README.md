@@ -924,9 +924,38 @@ Incorrect permission assignment for critical resource in Windows Accessibility I
 
 ### [CVE-2026-41651](https://secdb.nttzen.cloud/cve/detail/CVE-2026-41651)
 
+PackageKit is a a D-Bus abstraction layer that allows the user to manage packages in a secure way using a cross-distro, cross-architecture API. PackageKit between and including versions 1.0.2 and 1.3.4 is vulnerable to a time-of-check time-of-use (TOCTOU) race condition on transaction flags that allows unprivileged users to install packages as root and thus leads to a local privilege escalation. This is patched in version 1.3.5.
 
+A local unprivileged user can install arbitrary RPM packages as root, including executing RPM scriptlets, without authentication. The vulnerability is a TOCTOU race condition on `transaction->cached_transaction_flags`  combined with a silent state-machine guard that discards illegal backward transitions while leaving corrupted flags in place. Three bugs exist in `src/pk-transaction.c`:
+1. Unconditional flag overwrite (line 4036): `InstallFiles()` writes caller-supplied flags to `transaction->cached_transaction_flags` without checking whether the transaction has already been  authorized/started. A second call blindly overwrites the flags even while the transaction is RUNNING.
+2. Silent state-transition rejection (lines 873–882): `pk_transaction_set_state()` silently discards backward state transitions (e.g. `RUNNING` → `WAITING_FOR_AUTH`) but the flag overwrite at step 1 already happened. The transaction continues running with corrupted flags.
+3. Late flag read at execution time (lines 2273–2277): The scheduler's idle callback reads cached_transaction_flags at dispatch time, not at authorization time. If flags were overwritten between authorization and execution, the backend sees the attacker's flags.
 
 [![CVE-2026-41651](https://secdb.nttzen.cloud/cve/card/CVE-2026-41651)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-41651)
+
+
+
+## Copy Fail
+
+### References
+- https://copy.fail/ (Copy Fail, Official Website)
+
+
+### [CVE-2026-31431](https://secdb.nttzen.cloud/cve/detail/CVE-2026-31431)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+crypto: algif_aead - Revert to operating out-of-place
+
+This mostly reverts commit 72548b093ee3 except for the copying of
+the associated data.
+
+There is no benefit in operating in-place in algif_aead since the
+source and destination come from different mappings.  Get rid of
+all the complexity added for in-place operation and just copy the
+AD directly.
+
+[![CVE-2026-31431](https://secdb.nttzen.cloud/cve/card/CVE-2026-31431)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-31431)
 
 
 
