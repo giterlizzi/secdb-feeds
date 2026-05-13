@@ -996,5 +996,42 @@ destination-frag path or fall back to skb_cow_data().
 
 [![CVE-2026-43284](https://secdb.nttzen.cloud/cve/card/CVE-2026-43284)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-43284)
 
+### [CVE-2026-43500](https://secdb.nttzen.cloud/cve/detail/CVE-2026-43500)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+rxrpc: Also unshare DATA/RESPONSE packets when paged frags are present
+
+The DATA-packet handler in rxrpc_input_call_event() and the RESPONSE
+handler in rxrpc_verify_response() copy the skb to a linear one before
+calling into the security ops only when skb_cloned() is true.  An skb
+that is not cloned but still carries externally-owned paged fragments
+(e.g. SKBFL_SHARED_FRAG set by splice() into a UDP socket via
+__ip_append_data, or a chained skb_has_frag_list()) falls through to
+the in-place decryption path, which binds the frag pages directly into
+the AEAD/skcipher SGL via skb_to_sgvec().
+
+Extend the gate to also unshare when skb_has_frag_list() or
+skb_has_shared_frag() is true.  This catches the splice-loopback vector
+and other externally-shared frag sources while preserving the
+zero-copy fast path for skbs whose frags are kernel-private (e.g. NIC
+page_pool RX, GRO).  The OOM/trace handling already in place is reused.
+
+[![CVE-2026-43500](https://secdb.nttzen.cloud/cve/card/CVE-2026-43500)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-43500)
+
+
+
+## Dead.Letter
+
+### References
+- https://xbow.com/blog/dead-letter-cve-2026-45185-xbow-found-rce-exim (Dead.Letter (CVE-2026-45185) How XBOW Found an Unauthenticated RCE on Exim, Research)
+
+
+### [CVE-2026-45185](https://secdb.nttzen.cloud/cve/detail/CVE-2026-45185)
+
+Exim before 4.99.3, in certain GnuTLS configurations, has a remotely reachable use-after-free in the BDAT body parsing path. It is triggered when a client sends a TLS close_notify mid-body during a CHUNKING transfer, followed by a final cleartext byte on the same TCP connection. This can lead to heap corruption. An unauthenticated network attacker exploiting this vulnerability could execute arbitrary code.
+
+[![CVE-2026-45185](https://secdb.nttzen.cloud/cve/card/CVE-2026-45185)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-45185)
+
 
 
