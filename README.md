@@ -2,6 +2,20 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## YellowKey
+
+**Disclosure date:** 2026-05-20
+
+### [CVE-2026-45585](https://secdb.nttzen.cloud/cve/detail/CVE-2026-45585)
+
+Microsoft is aware of a security feature bypass vulnerability in Windows publicly referred to as &quot;YellowKey&quot;. The proof of concept for this vulnerability has been made public violating coordinated vulnerability best practices.
+We are issuing this CVE to provide mitigation guidance that can be implemented to protect against this vulnerability until the security update is made available.
+
+[![CVE-2026-45585](https://secdb.nttzen.cloud/cve/card/CVE-2026-45585)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-45585)
+
+
+---
+
 ## ssh-keysign-pwn
 
 **Disclosure date:** 2026-05-15
