@@ -8,7 +8,34 @@ Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
 ### [CVE-2026-46333](https://secdb.nttzen.cloud/cve/detail/CVE-2026-46333)
 
+In the Linux kernel, the following vulnerability has been resolved:
 
+ptrace: slightly saner 'get_dumpable()' logic
+
+The 'dumpability' of a task is fundamentally about the memory image of
+the task - the concept comes from whether it can core dump or not - and
+makes no sense when you don't have an associated mm.
+
+And almost all users do in fact use it only for the case where the task
+has a mm pointer.
+
+But we have one odd special case: ptrace_may_access() uses 'dumpable' to
+check various other things entirely independently of the MM (typically
+explicitly using flags like PTRACE_MODE_READ_FSCREDS).  Including for
+threads that no longer have a VM (and maybe never did, like most kernel
+threads).
+
+It's not what this flag was designed for, but it is what it is.
+
+The ptrace code does check that the uid/gid matches, so you do have to
+be uid-0 to see kernel thread details, but this means that the
+traditional "drop capabilities" model doesn't make any difference for
+this all.
+
+Make it all make a *bit* more sense by saying that if you don't have a
+MM pointer, we'll use a cached "last dumpability" flag if the thread
+ever had a MM (it will be zero for kernel threads since it is never
+set), and require a proper CAP_SYS_PTRACE capability to override.
 
 [![CVE-2026-46333](https://secdb.nttzen.cloud/cve/card/CVE-2026-46333)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-46333)
 
@@ -58,6 +85,49 @@ NGINX Plus and NGINX Open Source have a vulnerability in the ngx_http_rewrite_mo
 Exim before 4.99.3, in certain GnuTLS configurations, has a remotely reachable use-after-free in the BDAT body parsing path. It is triggered when a client sends a TLS close_notify mid-body during a CHUNKING transfer, followed by a final cleartext byte on the same TCP connection. This can lead to heap corruption. An unauthenticated network attacker exploiting this vulnerability could execute arbitrary code.
 
 [![CVE-2026-45185](https://secdb.nttzen.cloud/cve/card/CVE-2026-45185)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-45185)
+
+
+---
+
+## DirtyDecrypt
+
+**Alternative names:** DirtyCBC
+
+**Disclosure date:** 2026-05-09
+
+### [CVE-2026-31635](https://secdb.nttzen.cloud/cve/detail/CVE-2026-31635)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+rxrpc: fix oversized RESPONSE authenticator length check
+
+rxgk_verify_response() decodes auth_len from the packet and is supposed
+to verify that it fits in the remaining bytes. The existing check is
+inverted, so oversized RESPONSE authenticators are accepted and passed
+to rxgk_decrypt_skb(), which can later reach skb_to_sgvec() with an
+impossible length and hit BUG_ON(len).
+
+Decoded from the original latest-net reproduction logs with
+scripts/decode_stacktrace.sh:
+
+RIP: __skb_to_sgvec()
+  [net/core/skbuff.c:5285 (discriminator 1)]
+Call Trace:
+ skb_to_sgvec() [net/core/skbuff.c:5305]
+ rxgk_decrypt_skb() [net/rxrpc/rxgk_common.h:81]
+ rxgk_verify_response() [net/rxrpc/rxgk.c:1268]
+ rxrpc_process_connection()
+   [net/rxrpc/conn_event.c:266 net/rxrpc/conn_event.c:364
+    net/rxrpc/conn_event.c:386]
+ process_one_work() [kernel/workqueue.c:3281]
+ worker_thread()
+   [kernel/workqueue.c:3353 kernel/workqueue.c:3440]
+ kthread() [kernel/kthread.c:436]
+ ret_from_fork() [arch/x86/kernel/process.c:164]
+
+Reject authenticator lengths that exceed the remaining packet payload.
+
+[![CVE-2026-31635](https://secdb.nttzen.cloud/cve/card/CVE-2026-31635)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-31635)
 
 
 ---
