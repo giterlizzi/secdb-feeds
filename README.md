@@ -2,6 +2,19 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## nginx-poolslip
+
+**Disclosure date:** 2026-05-21
+
+### [CVE-2026-9256](https://secdb.nttzen.cloud/cve/detail/CVE-2026-9256)
+
+** RESERVED ** This candidate has been reserved by an organization or individual that will use it when announcing a new security problem. When the candidate has been publicized, the details for this candidate will be provided.
+
+[![CVE-2026-9256](https://secdb.nttzen.cloud/cve/card/CVE-2026-9256)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-9256)
+
+
+---
+
 ## YellowKey
 
 **Disclosure date:** 2026-05-20
@@ -79,7 +92,7 @@ set), and require a proper CAP_SYS_PTRACE capability to override.
 
 ### [CVE-2026-42945](https://secdb.nttzen.cloud/cve/detail/CVE-2026-42945)
 
-NGINX Plus and NGINX Open Source have a vulnerability in the ngx_http_rewrite_module module. This vulnerability exists when the rewrite directive is followed by a rewrite, if, or set directive and an unnamed Perl-Compatible Regular Expression (PCRE) capture (for example, $1, $2) with a replacement string that includes a question mark (?). An unauthenticated attacker along with conditions beyond its control can exploit this vulnerability by sending crafted HTTP requests. This may cause a heap buffer overflow in the NGINX worker process leading to a restart. Additionally, for systems with Address Space Layout Randomization (ASLR ) disabled, code execution is possible.  Note: Software versions which have reached End of Technical Support (EoTS) are not evaluated.
+NGINX Plus and NGINX Open Source have a vulnerability in the ngx_http_rewrite_module module. This vulnerability exists when the rewrite directive is followed by a rewrite, if, or set directive and an unnamed Perl-Compatible Regular Expression (PCRE) capture (for example, $1, $2) with a replacement string that includes a question mark (?). An unauthenticated attacker along with conditions beyond its control can exploit this vulnerability by sending crafted HTTP requests. This may cause a heap buffer overflow in the NGINX worker process leading to a restart. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR.  Note: Software versions which have reached End of Technical Support (EoTS) are not evaluated.
 
 [![CVE-2026-42945](https://secdb.nttzen.cloud/cve/card/CVE-2026-42945)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-42945)
 
