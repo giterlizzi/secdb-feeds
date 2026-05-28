@@ -8,7 +8,10 @@ Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
 ### [CVE-2026-9256](https://secdb.nttzen.cloud/cve/detail/CVE-2026-9256)
 
-** RESERVED ** This candidate has been reserved by an organization or individual that will use it when announcing a new security problem. When the candidate has been publicized, the details for this candidate will be provided.
+NGINX Plus and NGINX Open Source have a vulnerability in the ngx_http_rewrite_module module. This vulnerability exists when a rewrite directive uses a regex pattern with distinct, overlapping Perl-Compatible Regular Expression (PCRE) captures (for example, ^/((.*))$) and a replacement string that references multiple such captures (for example, $1$2) in a redirect or arguments context. An unauthenticated attacker along with conditions beyond their control can exploit this vulnerability by sending crafted HTTP requests. This may cause a heap buffer overflow in the NGINX worker process leading to a restart. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR. 
+
+
+Note: Software versions which have reached End of Technical Support (EoTS) are not evaluated.
 
 [![CVE-2026-9256](https://secdb.nttzen.cloud/cve/card/CVE-2026-9256)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-9256)
 
@@ -23,6 +26,15 @@ Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
 Microsoft is aware of a security feature bypass vulnerability in Windows publicly referred to as &quot;YellowKey&quot;. The proof of concept for this vulnerability has been made public violating coordinated vulnerability best practices.
 We are issuing this CVE to provide mitigation guidance that can be implemented to protect against this vulnerability until the security update is made available.
+Mitigation FAQs
+Should I leverage the temporary mitigation?
+Microsoft recommends that you consider implementing these mitigations if you are concerned your devices and data are at risk of being compromised or stolen. For example, if your organization’s employees take their work devices home or on business travel.
+What impact to service availability/management could be caused by implementing the mitigations?
+Implementing these mitigations will not impact service availability or management operations.
+Do customers need to revert the changes made to mitigate the vulnerability once the security update to protect against this vulnerability is available?
+No. The security update will maintain the mitigation's behavior once the security update is installed.
+I am using TPM+PIN, am I at risk of this vulnerability being exploited
+No, if you are using TPM+PIN the vulnerability is not exploitable.
 
 [![CVE-2026-45585](https://secdb.nttzen.cloud/cve/card/CVE-2026-45585)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-45585)
 
@@ -75,7 +87,25 @@ set), and require a proper CAP_SYS_PTRACE capability to override.
 
 ### [CVE-2026-46300](https://secdb.nttzen.cloud/cve/detail/CVE-2026-46300)
 
-** RESERVED ** This candidate has been reserved by an organization or individual that will use it when announcing a new security problem. When the candidate has been publicized, the details for this candidate will be provided.
+In the Linux kernel, the following vulnerability has been resolved:
+
+net: skbuff: preserve shared-frag marker during coalescing
+
+skb_try_coalesce() can attach paged frags from @from to @to.  If @from
+has SKBFL_SHARED_FRAG set, the resulting @to skb can contain the same
+externally-owned or page-cache-backed frags, but the shared-frag marker
+is currently lost.
+
+That breaks the invariant relied on by later in-place writers.  In
+particular, ESP input checks skb_has_shared_frag() before deciding
+whether an uncloned nonlinear skb can skip skb_cow_data().  If TCP
+receive coalescing has moved shared frags into an unmarked skb, ESP can
+see skb_has_shared_frag() as false and decrypt in place over page-cache
+backed frags.
+
+Propagate SKBFL_SHARED_FRAG when skb_try_coalesce() transfers paged
+frags.  The tailroom copy path does not need the marker because it copies
+bytes into @to's linear data rather than transferring frag descriptors.
 
 [![CVE-2026-46300](https://secdb.nttzen.cloud/cve/card/CVE-2026-46300)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-46300)
 
@@ -265,6 +295,51 @@ A local unprivileged user can install arbitrary RPM packages as root, including 
 3. Late flag read at execution time (lines 2273–2277): The scheduler's idle callback reads cached_transaction_flags at dispatch time, not at authorization time. If flags were overwritten between authorization and execution, the backend sees the attacker's flags.
 
 [![CVE-2026-41651](https://secdb.nttzen.cloud/cve/card/CVE-2026-41651)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-41651)
+
+
+---
+
+## RedSun
+
+**Category:** Local Privilege Escalation
+
+**Disclosure date:** 2026-04-16
+
+### [CVE-2026-41091](https://secdb.nttzen.cloud/cve/detail/CVE-2026-41091)
+
+Improper link resolution before file access ('link following') in Microsoft Defender allows an authorized attacker to elevate privileges locally.
+
+[![CVE-2026-41091](https://secdb.nttzen.cloud/cve/card/CVE-2026-41091)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-41091)
+
+
+---
+
+## UnDefend
+
+**Category:** Denial of Service
+
+**Disclosure date:** 2026-04-16
+
+### [CVE-2026-45498](https://secdb.nttzen.cloud/cve/detail/CVE-2026-45498)
+
+Microsoft Defender Denial of Service Vulnerability
+
+[![CVE-2026-45498](https://secdb.nttzen.cloud/cve/card/CVE-2026-45498)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-45498)
+
+
+---
+
+## BlueHammer
+
+**Category:** Local Privilege Escalation
+
+**Disclosure date:** 2026-04-03
+
+### [CVE-2026-33825](https://secdb.nttzen.cloud/cve/detail/CVE-2026-33825)
+
+Insufficient granularity of access control in Microsoft Defender allows an authorized attacker to elevate privileges locally.
+
+[![CVE-2026-33825](https://secdb.nttzen.cloud/cve/card/CVE-2026-33825)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-33825)
 
 
 ---
