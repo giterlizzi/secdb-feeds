@@ -1370,6 +1370,21 @@ Race condition in mm/gup.c in the Linux kernel 2.x through 4.x before 4.8.3 allo
 
 ---
 
+## HPACK Bomb
+
+**Category:** Denial of Service
+
+**Disclosure date:** 2016-08-04
+
+### [CVE-2016-6581](https://secdb.nttzen.cloud/cve/detail/CVE-2016-6581)
+
+A HTTP/2 implementation built using any version of the Python HPACK library between v1.0.0 and v2.2.0 could be targeted for a denial of service attack, specifically a so-called "HPACK Bomb" attack. This attack occurs when an attacker inserts a header field that is exactly the size of the HPACK dynamic header table into the dynamic header table. The attacker can then send a header block that is simply repeated requests to expand that field in the dynamic table. This can lead to a gigantic compression ratio of 4,096 or better, meaning that 16kB of data can decompress to 64MB of data on the target machine.
+
+[![CVE-2016-6581](https://secdb.nttzen.cloud/cve/card/CVE-2016-6581)](https://secdb.nttzen.cloud/cve/detail/CVE-2016-6581)
+
+
+---
+
 ## DROWN
 
 **Disclosure date:** 2016-03-01
