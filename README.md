@@ -2,6 +2,21 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## HTTP/2 Bomb
+
+**Category:** Denial of Service
+
+**Disclosure date:** 2026-05-27
+
+### [CVE-2026-49975](https://secdb.nttzen.cloud/cve/detail/CVE-2026-49975)
+
+** RESERVED ** This candidate has been reserved by an organization or individual that will use it when announcing a new security problem. When the candidate has been publicized, the details for this candidate will be provided.
+
+[![CVE-2026-49975](https://secdb.nttzen.cloud/cve/card/CVE-2026-49975)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-49975)
+
+
+---
+
 ## nginx-poolslip
 
 **Disclosure date:** 2026-05-21
