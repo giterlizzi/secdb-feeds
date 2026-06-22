@@ -2,6 +2,34 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## Squidbleed
+
+**Disclosure date:** 2026-06-12
+
+### [CVE-2026-47729](https://secdb.nttzen.cloud/cve/detail/CVE-2026-47729)
+
+** RESERVED ** This candidate has been reserved by an organization or individual that will use it when announcing a new security problem. When the candidate has been publicized, the details for this candidate will be provided.
+
+[![CVE-2026-47729](https://secdb.nttzen.cloud/cve/card/CVE-2026-47729)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-47729)
+
+
+---
+
+## RoguePlanet
+
+**Category:** Local Privilege Escalation
+
+**Disclosure date:** 2026-06-09
+
+### [CVE-2026-50656](https://secdb.nttzen.cloud/cve/detail/CVE-2026-50656)
+
+Microsoft is aware of an elevation of privilege in the Microsoft Malware Protection Engine in Microsoft Defender publicly referred to as &quot;RoguePlanet &quot;. We are working to provide a high quality security update that addresses this vulnerability. We will provide information in this CVE when the update is available.
+
+[![CVE-2026-50656](https://secdb.nttzen.cloud/cve/card/CVE-2026-50656)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-50656)
+
+
+---
+
 ## HTTP/2 Bomb
 
 **Category:** Denial of Service
@@ -10,7 +38,9 @@ Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
 ### [CVE-2026-49975](https://secdb.nttzen.cloud/cve/detail/CVE-2026-49975)
 
-** RESERVED ** This candidate has been reserved by an organization or individual that will use it when announcing a new security problem. When the candidate has been publicized, the details for this candidate will be provided.
+Memory Allocation with Excessive Size Value vulnerability in Apache HTTP Server's mod_http leads to denial of service via malicious HTTP requests.
+
+This issue affects Apache HTTP Server: from 2.4.17 through 2.4.67.
 
 [![CVE-2026-49975](https://secdb.nttzen.cloud/cve/card/CVE-2026-49975)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-49975)
 
