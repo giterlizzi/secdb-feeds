@@ -2,6 +2,123 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## wp2shell
+
+**Category:** Remote Code Execution
+
+**Disclosure date:** 2026-07-17
+
+### References
+- https://wp2shell.com/ (Pre Authentication RCE in WordPress Core, official-website)
+- https://slcyber.io/research-center/wp2shell-pre-authentication-rce-in-wordpress-core (wp2shell: Pre Authentication RCE in WordPress Core, research)
+
+
+### [CVE-2026-60137](https://secdb.nttzen.cloud/cve/detail/CVE-2026-60137)
+
+WordPress 6.8.x before 6.8.6, 6.9.x before 6.9.5, and 7.0.x before 7.0.2 does not properly sanitise the author__not_in parameter of WP_Query, which could allow SQL Injection when a plugin or theme passes untrusted input to the parameter.
+
+[![CVE-2026-60137](https://secdb.nttzen.cloud/cve/card/CVE-2026-60137)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-60137)
+
+### [CVE-2026-63030](https://secdb.nttzen.cloud/cve/detail/CVE-2026-63030)
+
+WordPress 6.9.x before 6.9.5 and 7.0.x before 7.0.2 is affected by a REST API batch endpoint route confusion issue which, combined with the author__not_in WP_Query SQL Injection (CVE-2026-60137), could allow an attacker to perform SQL Injection and achieve Remote Code Execution.
+
+[![CVE-2026-63030](https://secdb.nttzen.cloud/cve/card/CVE-2026-63030)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-63030)
+
+
+---
+
+## GhostLock
+
+**Category:** Local Privilege Escalation
+
+**Disclosure date:** 2026-07-07
+
+### References
+- https://nebusec.ai/research/ionstack-part-2/ (IonStack part II: GhostLock, a stack-UAF that has existed in ALL Linux distributions for 15 years, Research)
+
+
+### [CVE-2026-43499](https://secdb.nttzen.cloud/cve/detail/CVE-2026-43499)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+rtmutex: Use waiter::task instead of current in remove_waiter()
+
+remove_waiter() is used by the slowlock paths, but it is also used for
+proxy-lock rollback in rt_mutex_start_proxy_lock() when invoked from
+futex_requeue().
+
+In the latter case waiter::task is not current, but remove_waiter()
+operates on current for the dequeue operation. That results in several
+problems:
+
+  1) the rbtree dequeue happens without waiter::task::pi_lock being held
+
+  2) the waiter task's pi_blocked_on state is not cleared, which leaves a
+     dangling pointer primed for UAF around.
+
+  3) rt_mutex_adjust_prio_chain() operates on the wrong top priority waiter
+     task
+
+Use waiter::task instead of current in all related operations in
+remove_waiter() to cure those problems.
+
+[ tglx: Fixup rt_mutex_adjust_prio_chain(), add a comment and amend the
+  	changelog ]
+
+[![CVE-2026-43499](https://secdb.nttzen.cloud/cve/card/CVE-2026-43499)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-43499)
+
+
+---
+
+## Januscape
+
+**Category:** Memory Corruption (buffer overflow, UAF, heap overflow), Denial of Service, Remote Code Execution, Local Privilege Escalation
+
+**Disclosure date:** 2026-07-04
+
+### References
+- https://github.com/V4bel/Januscape (Januscape: Guest-to-Host Escape in KVM/x86, PoC)
+
+
+### [CVE-2026-53359](https://secdb.nttzen.cloud/cve/detail/CVE-2026-53359)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+KVM: x86: Fix shadow paging use-after-free due to unexpected role
+
+Commit 0cb2af2ea66ad ("KVM: x86: Fix shadow paging use-after-free due
+to unexpected GFN") fixed a shadow paging mismatch between stored and
+computed GFNs; the bug could be triggered by changing a PDE mapping from
+outside the guest, and then deleting a memslot.  The rmap_remove()
+call would miss entries created after the PDE change because the GFN
+of the leaf SPTE does not match the GFN of the struct kvm_mmu_page.
+
+A similar hole however remains if the modified PDE points to a non-leaf
+page.  In this case the gfn can be made to match, but the role does not
+match: the original large 2MB page creates a kvm_mmu_page with direct=1,
+while the new 4KB needs a kvm_mmu_page with direct=0.  However,
+kvm_mmu_get_child_sp() does not compare the role, and therefore reuses
+the page.
+
+The next step is installing a leaf (4KB) SPTE on the new path which
+records an rmap entry under the gfn resolved by the walk.  But when
+that child is zapped its parent kvm_mmu_page has direct=1 and
+kvm_mmu_page_get_gfn() computes the gfn for the 4KB page as
+sp->gfn + index instead of using sp->shadowed_translation[] (or sp->gfns[]
+in older kernels).  It therefore fails to remove the recorded entry.
+
+When the memslot is dropped the shadow page is freed but the rmap
+entry survives, as in the scenario that was already fixed.  Code that
+later walks that gfn (dirty logging, MMU notifier invalidation, and
+so on) dereferences an sptep that lies in the freed page, causing the
+use-after-free.
+
+[![CVE-2026-53359](https://secdb.nttzen.cloud/cve/card/CVE-2026-53359)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-53359)
+
+
+---
+
 ## DirtyClone
 
 **Category:** Local Privilege Escalation
@@ -132,7 +249,7 @@ READ_ONCE(epi->dying) fast-path bailout stays.
 
 ### [CVE-2026-47729](https://secdb.nttzen.cloud/cve/detail/CVE-2026-47729)
 
-** RESERVED ** This candidate has been reserved by an organization or individual that will use it when announcing a new security problem. When the candidate has been publicized, the details for this candidate will be provided.
+Squid is a caching proxy for the Web. Prior to 7.6, due to an improper validation of syntactic correctness of input in the FTP gateway (src/clients/FtpGateway.cc), Squid is vulnerable to an out-of-bounds read: when a listing entry date in the TypeA or TypeB directory-listing formats is not followed by a filename, parsing was not restricted to the input buffer, so a trusted client accessing a misbehaving FTP server through Squid's gateway feature could read memory from random unrelated transactions. This issue is fixed in version 7.6.
 
 [![CVE-2026-47729](https://secdb.nttzen.cloud/cve/card/CVE-2026-47729)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-47729)
 
@@ -147,7 +264,7 @@ READ_ONCE(epi->dying) fast-path bailout stays.
 
 ### [CVE-2026-50656](https://secdb.nttzen.cloud/cve/detail/CVE-2026-50656)
 
-Microsoft is aware of an elevation of privilege in the Microsoft Malware Protection Engine in Microsoft Defender publicly referred to as &quot;RoguePlanet &quot;. We are working to provide a high quality security update that addresses this vulnerability. We will provide information in this CVE when the update is available.
+Microsoft is aware of an elevation of privilege in the Microsoft Malware Protection Engine in Microsoft Defender publicly referred to as &quot;RoguePlanet &quot;.
 
 [![CVE-2026-50656](https://secdb.nttzen.cloud/cve/card/CVE-2026-50656)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-50656)
 
