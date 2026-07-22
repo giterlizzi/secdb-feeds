@@ -2,6 +2,21 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## RefluXFS
+
+**Category:** Local Privilege Escalation
+
+**Disclosure date:** 2026-07-22
+
+### [CVE-2026-64600](https://secdb.nttzen.cloud/cve/detail/CVE-2026-64600)
+
+
+
+[![CVE-2026-64600](https://secdb.nttzen.cloud/cve/card/CVE-2026-64600)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-64600)
+
+
+---
+
 ## wp2shell
 
 **Category:** Remote Code Execution
