@@ -8,6 +8,11 @@ Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
 **Disclosure date:** 2026-07-22
 
+### References
+- https://blog.qualys.com/vulnerabilities-threat-research/2026/07/22/refluxfs-a-linux-kernel-local-privilege-escalation-to-root-in-xfs-cve-2026-64600 (RefluXFS: A Linux Kernel Local Privilege Escalation to Root in XFS (CVE-2026-64600), blog)
+- https://cdn2.qualys.com/advisory/2026/07/22/RefluXFS.txt (RefluXFS: Local Privilege Escalation via XFS reflink direct-I/O race (CVE-2026-64600), advisory)
+
+
 ### [CVE-2026-64600](https://secdb.nttzen.cloud/cve/detail/CVE-2026-64600)
 
 
