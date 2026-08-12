@@ -2,6 +2,119 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## Zoomsday
+
+**Disclosure date:** 2026-08-11
+
+### [CVE-2026-53413](https://secdb.nttzen.cloud/cve/detail/CVE-2026-53413)
+
+Missing bounds check in the annotator function of Zoom Clients allows buffer over-write, which may allow a meeting participant to achieve remote code execution of another participant via network access.
+
+[![CVE-2026-53413](https://secdb.nttzen.cloud/cve/card/CVE-2026-53413)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-53413)
+
+
+---
+
+## XSS2shell
+
+**Category:** Remote Code Execution, Cross‑Site Scripting
+
+**Disclosure date:** 2026-08-07
+
+### References
+- https://pwn.ai/blog/xss2shell (XSS2Shell: WordPress Preauth XSS to RCE Chain (CVE-2026-64638), blog)
+
+
+### [CVE-2026-64638](https://secdb.nttzen.cloud/cve/detail/CVE-2026-64638)
+
+WordPress is vulnerable to a pre-auth reflected XSS vulnerability on the login screen.
+
+Via a specially crafted malicious third-party website hosted by an attacker, it is possible for this to be escalated to an RCE vulnerability with conditions outside of the attackers control. This requires successful social engineering of and explicit interaction by the target victim.
+
+This issue affects all versions of WordPress. Version 7.0.3 has been released, containing a fix for the vulnerability, and as a courtesy to users on older branches the fix has been backported to all branches back to 4.7.
+
+Discovered and responsibly disclosed by [the team at pwn.ai](https://pwn.ai/).
+
+[![CVE-2026-64638](https://secdb.nttzen.cloud/cve/card/CVE-2026-64638)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-64638)
+
+
+---
+
+## SCTPhantom
+
+**Disclosure date:** 2026-08-06
+
+### [CVE-2026-64564](https://secdb.nttzen.cloud/cve/detail/CVE-2026-64564)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+sctp: don't free the ASCONF's own transport in DEL-IP processing
+
+sctp_process_asconf() caches the transport the ASCONF chunk is processed
+against in asconf->transport (== chunk->transport, set once in sctp_rcv()).
+For an ASCONF located through its Address Parameter by
+__sctp_rcv_asconf_lookup(), that cached transport corresponds to the
+Address Parameter, which need not be the packet's source address.
+
+sctp_process_asconf_param() rejects a DEL-IP for the packet source address
+(ADDIP D8, SCTP_ERROR_DEL_SRC_IP), but nothing protects asconf->transport.
+A single ASCONF can therefore carry, in order:
+
+    [Address Parameter L] [DEL-IP L] [DEL-IP 0.0.0.0]
+
+where L differs from the source. The DEL-IP for L passes the D8 check and
+calls sctp_assoc_rm_peer() on the transport that asconf->transport still
+points at, freeing it (RCU-deferred). The following wildcard DEL-IP then
+reuses the now-dangling asconf->transport in sctp_assoc_set_primary() and
+sctp_assoc_del_nonprimary_peers(): set_primary() dereferences the freed
+transport (->ipaddr, ->state) and plants the dangling pointer into
+asoc->peer.primary_path / active_path, and del_nonprimary_peers(), keeping
+only the pointer that is no longer on the list, removes every real
+transport, leaving the association with a transport_count of 0 and
+primary_path/active_path pointing at freed memory.
+
+Reject a DEL-IP that targets the transport the ASCONF is being processed
+against, mirroring the existing source-address guard, so the wildcard
+branch can never reuse a freed transport.
+
+[![CVE-2026-64564](https://secdb.nttzen.cloud/cve/card/CVE-2026-64564)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-64564)
+
+
+---
+
+## Zapscape
+
+**Disclosure date:** 2026-08-06
+
+### [CVE-2026-64561](https://secdb.nttzen.cloud/cve/detail/CVE-2026-64561)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+KVM: x86: Check for invalid/obsolete root *after* making MMU pages available
+
+Check for a "stale" page fault, i.e. for an invalid and/or obsolete root,
+after making MMU pages available for the shadow MMU.  If reclaiming shadow
+pages zaps an in-use root, i.e. marks it invalid, then KVM will attempt to
+map memory into an invalid root.  On its own, populating an invalid root is
+"fine", but because child shadow pages inherit their parent's role, any
+children created during the map/fetch will be created as invalid pages,
+thus violating KVM's invariant that invalid pages are never on the list of
+active MMU pages.
+
+Note, the underlying flaw has existed since KVM first started tracking
+invalid roots in 2008 (commit 2e53d63acba7, "KVM: MMU: ignore zapped root
+pagetables"), but the true badness only came along in 2020 (Linux 5.9)
+with the invariant that invalid shadow pages can't be on the list of
+active pages.
+
+Note #2, inheriting role.invalid when creating child shadow pages is also
+far from ideal; that flaw will be addressed separately.
+
+[![CVE-2026-64561](https://secdb.nttzen.cloud/cve/card/CVE-2026-64561)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-64561)
+
+
+---
+
 ## RefluXFS
 
 **Category:** Local Privilege Escalation
@@ -15,7 +128,22 @@ Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
 ### [CVE-2026-64600](https://secdb.nttzen.cloud/cve/detail/CVE-2026-64600)
 
+In the Linux kernel, the following vulnerability has been resolved:
 
+xfs: resample the data fork mapping after cycling ILOCK
+
+xfs_reflink_fill_{cow_hole,delalloc} are both presented with an inode,
+a data fork mapping, and a cow fork mapping.  Unfortunately, these two
+helpers cycle the ILOCK to grab a transaction, which means that the
+mappings are stale as soon as we reacquire the ILOCK.  Currently we
+refresh the cow fork mapping by re-calling xfs_find_trim_cow_extent, but
+we don't refresh the data fork mapping beforehand, which means that the
+xfs_bmap_trim_cow in that function queries the refcount btree about the
+wrong physical blocks and returns an inaccurate value in *shared.
+
+If *shared is now false, the directio write proceeds with a stale data
+fork mapping.  Fix this by querying the data fork mapping if the
+sequence counter changes across the ILOCK cycle.
 
 [![CVE-2026-64600](https://secdb.nttzen.cloud/cve/card/CVE-2026-64600)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-64600)
 
@@ -1016,7 +1144,11 @@ wall in util-linux through 2.40, often installed with setgid tty permissions, al
 
 A use-after-free vulnerability in the Linux kernel's netfilter: nf_tables component can be exploited to achieve local privilege escalation.
 
+
+
 The nft_verdict_init() function allows positive values as drop error within the hook verdict, and hence the nf_hook_slow() function can cause a double free vulnerability when NF_DROP is issued with a drop error which resembles NF_ACCEPT.
+
+
 
 We recommend upgrading past commit f342de4e2f33e0e39165d8639387aa6c19dff660.
 
@@ -1344,17 +1476,17 @@ Windows Print Spooler Remote Code Execution Vulnerability
 
 ### [CVE-2021-34527](https://secdb.nttzen.cloud/cve/detail/CVE-2021-34527)
 
-<p>A remote code execution vulnerability exists when the Windows Print Spooler service improperly performs privileged file operations. An attacker who successfully exploited this vulnerability could run arbitrary code with SYSTEM privileges. An attacker could then install programs; view, change, or delete data; or create new accounts with full user rights.</p>
-<p>UPDATE July 7, 2021: The security update for Windows Server 2012, Windows Server 2016 and Windows 10, Version 1607 have been released. Please see the Security Updates table for the applicable update for your system. We recommend that you install these updates immediately. If you are unable to install these updates, see the FAQ and Workaround sections in this CVE for information on how to help protect your system from this vulnerability.</p>
-<p>In addition to installing the updates, in order to secure your system, you must confirm that the following registry settings are set to 0 (zero) or are not defined (<strong>Note</strong>: These registry keys do not exist by default, and therefore are already at the secure setting.), also that your Group Policy setting are correct (see FAQ):</p>
-<ul>
-<li>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint</li>
-<li>NoWarningNoElevationOnInstall = 0 (DWORD) or not defined (default setting)</li>
-<li>UpdatePromptSettings = 0 (DWORD) or not defined (default setting)</li>
-</ul>
-<p><strong>Having NoWarningNoElevationOnInstall set to 1 makes your system vulnerable by design.</strong></p>
-<p>UPDATE July 6, 2021: Microsoft has completed the investigation and has released security updates to address this vulnerability. Please see the Security Updates table for the applicable update for your system. We recommend that you install these updates immediately. If you are unable to install these updates, see the FAQ and Workaround sections in this CVE for information on how to help protect your system from this vulnerability. See also <a href="https://support.microsoft.com/topic/31b91c02-05bc-4ada-a7ea-183b129578a7">KB5005010: Restricting installation of new printer drivers after applying the July 6, 2021 updates</a>.</p>
-<p>Note that the security updates released on and after July 6, 2021 contain protections for CVE-2021-1675 and the additional remote code execution exploit in the Windows Print Spooler service known as “PrintNightmare”, documented in CVE-2021-34527.</p>
+A remote code execution vulnerability exists when the Windows Print Spooler service improperly performs privileged file operations. An attacker who successfully exploited this vulnerability could run arbitrary code with SYSTEM privileges. An attacker could then install programs; view, change, or delete data; or create new accounts with full user rights.
+UPDATE July 7, 2021: The security update for Windows Server 2012, Windows Server 2016 and Windows 10, Version 1607 have been released. Please see the Security Updates table for the applicable update for your system. We recommend that you install these updates immediately. If you are unable to install these updates, see the FAQ and Workaround sections in this CVE for information on how to help protect your system from this vulnerability.
+In addition to installing the updates, in order to secure your system, you must confirm that the following registry settings are set to 0 (zero) or are not defined (Note: These registry keys do not exist by default, and therefore are already at the secure setting.), also that your Group Policy setting are correct (see FAQ):
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint
+NoWarningNoElevationOnInstall = 0 (DWORD) or not defined (default setting)
+UpdatePromptSettings = 0 (DWORD) or not defined (default setting)
+
+Having NoWarningNoElevationOnInstall set to 1 makes your system vulnerable by design.
+UPDATE July 6, 2021: Microsoft has completed the investigation and has released security updates to address this vulnerability. Please see the Security Updates table for the applicable update for your system. We recommend that you install these updates immediately. If you are unable to install these updates, see the FAQ and Workaround sections in this CVE for information on how to help protect your system from this vulnerability. See also KB5005010: Restricting installation of new printer drivers after applying the July 6, 2021 updates.
+Note that the security updates released on and after July 6, 2021 contain protections for CVE-2021-1675 and the additional remote code execution exploit in the Windows Print Spooler service known as “PrintNightmare”, documented in CVE-2021-34527.
 
 [![CVE-2021-34527](https://secdb.nttzen.cloud/cve/card/CVE-2021-34527)](https://secdb.nttzen.cloud/cve/detail/CVE-2021-34527)
 
