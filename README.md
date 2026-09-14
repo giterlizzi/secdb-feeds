@@ -2,6 +2,41 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## ZcopyReaper
+
+**Category:** Local Privilege Escalation
+
+**Disclosure date:** 2026-09-14
+
+### [CVE-2026-43502](https://secdb.nttzen.cloud/cve/detail/CVE-2026-43502)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+net/rds: handle zerocopy send cleanup before the message is queued
+
+A zerocopy send can fail after user pages have been pinned but before
+the message is attached to the sending socket.
+
+The purge path currently infers zerocopy state from rm->m_rs, so an
+unqueued message can be cleaned up as if it owned normal payload pages.
+However, zerocopy ownership is really determined by the presence of
+op_mmp_znotifier, regardless of whether the message has reached the
+socket queue.
+
+Capture op_mmp_znotifier up front in rds_message_purge() and use it as
+the cleanup discriminator. If the message is already associated with a
+socket, keep the existing completion path. Otherwise, drop the pinned
+page accounting directly and release the notifier before putting the
+payload pages.
+
+This keeps early send failure cleanup consistent with the zerocopy
+lifetime rules without changing the normal queued completion path.
+
+[![CVE-2026-43502](https://secdb.nttzen.cloud/cve/card/CVE-2026-43502)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-43502)
+
+
+---
+
 ## Zoomsday
 
 **Disclosure date:** 2026-08-11
