@@ -6,7 +6,7 @@ Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
 **Category:** Local Privilege Escalation
 
-**Disclosure date:** 2026-09-14
+**Disclosure date:** 2026-09-07
 
 ### [CVE-2026-43502](https://secdb.nttzen.cloud/cve/detail/CVE-2026-43502)
 
