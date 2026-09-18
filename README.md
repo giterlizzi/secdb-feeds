@@ -2,6 +2,132 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## DirtyAH6
+
+**Category:** Local Privilege Escalation
+
+**Disclosure date:** 2026-09-18
+
+### [CVE-2026-80844](https://secdb.nttzen.cloud/cve/detail/CVE-2026-80844)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+xfrm: ah6: validate routing header segments_left
+
+AH6 rearranges routing-header addresses before computing or verifying the
+ICV. ipv6_rearrange_rthdr() assumes that segments_left is not larger than
+the number of addresses described by the routing header's hdrlen field.
+
+That assumption does not hold for raw IPv6 HDRINCL packets. A packet with
+hdrlen equal to 2 describes one address, but can carry an arbitrary
+segments_left value. With segments_left equal to 255, the function moves
+its address pointer 4,064 bytes backwards and passes a 4,064-byte length to
+memmove(), resulting in an out-of-bounds access.
+
+Validate the invariant locally before modifying the routing header or
+performing any address-pointer arithmetic, and propagate malformed-header
+errors to the existing AH6 input and output error paths.
+
+[![CVE-2026-80844](https://secdb.nttzen.cloud/cve/card/CVE-2026-80844)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-80844)
+
+
+---
+
+## TUNderflow
+
+**Category:** Local Privilege Escalation
+
+**Disclosure date:** 2026-09-18
+
+### [CVE-2026-81000](https://secdb.nttzen.cloud/cve/detail/CVE-2026-81000)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+net: tun: bound receive headroom
+
+tun_get_user() uses tun->align both as skb headroom and when choosing how
+much packet data to keep linear. OVS can propagate an oversized headroom
+request from another port to TUN or TAP.
+
+When align is larger than the usable space in a one-page skb head,
+SKB_MAX_HEAD(align) underflows and the result becomes negative when stored
+in good_linear. That value later wraps when assigned to the size_t linear
+variable, and tun_alloc_skb() can place skb->data outside the allocated
+head.
+
+Bound the headroom stored by TUN to the one-page skb-head budget and the
+largest non-sentinel 16-bit skb header offset. Leave one linear byte for
+raw TUN and a complete Ethernet header for TAP, including NET_IP_ALIGN.
+
+Also pull the raw-TUN protocol byte and the TAP Ethernet header before
+accessing them, so these checks remain safe for nonlinear skbs supplied by
+other allocation paths.
+
+[![CVE-2026-81000](https://secdb.nttzen.cloud/cve/card/CVE-2026-81000)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-81000)
+
+
+---
+
+## PPPoEject
+
+**Category:** Local Privilege Escalation
+
+**Disclosure date:** 2026-09-18
+
+### [CVE-2026-68121](https://secdb.nttzen.cloud/cve/detail/CVE-2026-68121)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+pppoe: reload header pointer after dev_hard_header()
+
+pppoe_sendmsg() saves a pointer to the PPPoE header before calling
+dev_hard_header(). Device header callbacks are allowed to reallocate the
+skb head, invalidating pointers into it.
+
+This can happen when a send is blocked in copy_from_user() while the first
+non-Ethernet port is added to an empty team device. The team's delegated
+GRE header callback then expands the skb head. PPPoE subsequently writes
+six bytes through the stale pointer into the freed head.
+
+Reload the PPPoE header through the skb's network-header offset after
+device header creation. pskb_expand_head() updates that offset when it
+relocates the head.
+
+[![CVE-2026-68121](https://secdb.nttzen.cloud/cve/card/CVE-2026-68121)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-68121)
+
+
+---
+
+## DiagSpill
+
+**Category:** Local Privilege Escalation
+
+**Disclosure date:** 2026-09-18
+
+### [CVE-2026-74469](https://secdb.nttzen.cloud/cve/detail/CVE-2026-74469)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+sctp: prevent peer transport count overflow
+
+sctp_assoc_add_peer() increments the association's 16-bit transport_count
+for every new unique peer. Adding the 65,536th transport wraps the count to
+zero.
+
+SCTP sock_diag uses transport_count to reserve the INET_DIAG_PEERS payload,
+then copies one sockaddr_storage for every entry in transport_addr_list.
+After the wrap, a diagnostic dump reserves an empty payload and writes
+8 MiB of peer addresses past the skb tail.
+
+Reject a new unique peer when transport_count has reached U16_MAX. Perform
+the check after the existing-peer lookup so a duplicate address continues
+to return its existing transport at the limit.
+
+[![CVE-2026-74469](https://secdb.nttzen.cloud/cve/card/CVE-2026-74469)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-74469)
+
+
+---
+
 ## PhantomFix
 
 **Category:** Code/Command/Log/Template Injection, Remote Code Execution
