@@ -2,6 +2,25 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## PhantomFix
+
+**Category:** Code/Command/Log/Template Injection, Remote Code Execution
+
+**Disclosure date:** 2026-09-14
+
+### References
+- https://agyn.io/blog/sentry-seer-autofix-vulnerability (PhantomFix: a fabricated bug that hijacks an AI autofix agent (CVE-2026-90999), blog)
+
+
+### [CVE-2026-90999](https://secdb.nttzen.cloud/cve/detail/CVE-2026-90999)
+
+Sentry Seer is vulnerable to a multi-stage trust-boundary violation that allows unauthenticated attacker-controlled telemetry to become code that is executed by an agent in a privileged automation environment. An external attacker can submit fabricated Sentry events without having access to the victim’s Sentry account, source repository, or infrastructure.
+
+[![CVE-2026-90999](https://secdb.nttzen.cloud/cve/card/CVE-2026-90999)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-90999)
+
+
+---
+
 ## ZcopyReaper
 
 **Category:** Local Privilege Escalation
