@@ -2,6 +2,56 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## Vghost
+
+**Disclosure date:** 2026-10-12
+
+### References
+- https://matrix.tencent.com/en/2026/10/12/vghost-cve-2026-74580 (Vghost: Beyond the Privilege Boundary, blog)
+
+
+### [CVE-2026-74580](https://secdb.nttzen.cloud/cve/detail/CVE-2026-74580)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+vhost: reset the vring metadata cache on vring reconfiguration
+
+vq->meta_iotlb[] caches the vhost_iotlb_map that backs each vring
+metadata region, and iotlb_access_ok() returns early on a cache hit,
+taking the hit as proof that the region has already been validated:
+
+	if (vhost_vq_meta_fetch(vq, addr, len, type))
+		return true;
+
+The cache is reset on VHOST_IOTLB_UPDATE and VHOST_IOTLB_INVALIDATE, on
+device IOTLB (re)initialisation and on vq reset, but not when
+VHOST_SET_VRING_ADDR replaces vq->desc, vq->avail and vq->used, nor when
+VHOST_SET_VRING_NUM changes the region sizes.
+
+With a device IOTLB attached both ioctls are accepted while the vq is
+live, and neither validates the addresses at ioctl time: vq_access_ok()
+and vq_log_used_access_ok() return true early because the addresses are
+GIOVAs, deferring validation to prefetch time.  Once the cache has been
+populated that deferred validation no longer runs -- vq_meta_prefetch()
+hits the stale entry and returns true -- and vhost_vq_meta_fetch() keeps
+translating through the old mapping as
+
+	map->addr + addr - map->start
+
+for an address the mapping no longer covers.  vhost_copy_to_user() and
+vhost_copy_from_user() consume the result with __copy_to_user() and
+__copy_from_user(), which do not check it either, so a subsequent used
+ring update or descriptor fetch accesses memory outside the region the
+IOTLB actually maps.
+
+Reset the metadata cache whenever the vring is reconfigured, so the new
+addresses are pushed back through iotlb_access_ok()'s slow path.
+
+[![CVE-2026-74580](https://secdb.nttzen.cloud/cve/card/CVE-2026-74580)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-74580)
+
+
+---
+
 ## DirtyAH6
 
 **Category:** Local Privilege Escalation
