@@ -2,6 +2,37 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## PwnEscape
+
+**Disclosure date:** 2026-10-15
+
+### References
+- https://pwn.ai/blog/pwnescape (PwnEscape: Guest-to-Host KVM Escape (CVE-2026-99999), research)
+
+
+### [CVE-2026-99999](https://secdb.nttzen.cloud/cve/detail/CVE-2026-99999)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+ipv4: validate checksum_start before completing checksum
+
+If a packet with bad checksum metadata gets into the ipv4 stack,
+skb_checksum_help can corrupt the network header and cause a bunch of
+mischief.
+
+This was discovered and reported by Paulos, and has been reporoduced
+by others independently since.
+
+We really shouldn't allow such packets in, but as a defence
+in depth measure, let's also check before we complete the checksum.
+
+A more complete validation at input is forthcoming, but needs more work.
+
+[![CVE-2026-99999](https://secdb.nttzen.cloud/cve/card/CVE-2026-99999)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-99999)
+
+
+---
+
 ## Vghost
 
 **Disclosure date:** 2026-10-12
