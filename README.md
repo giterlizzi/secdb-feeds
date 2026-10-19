@@ -2,6 +2,41 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## Plex2Shell
+
+**Disclosure date:** 2026-10-16
+
+### References
+- https://zmain.info/blog/plex2shell (Plex2Shell: Unauthenticated RCE in Plex Media Server, research)
+
+
+### [CVE-2026-96652](https://secdb.nttzen.cloud/cve/detail/CVE-2026-96652)
+
+Plex Media Server before 1.43.3.10861 allows SSRF via '/player/timeline'. An attacker using any X-Plex-Token value can include a full URL in the 'protocol' parameter and force the Plex server to POST to the attacker's chosen destination.
+
+[![CVE-2026-96652](https://secdb.nttzen.cloud/cve/card/CVE-2026-96652)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-96652)
+
+### [CVE-2026-96654](https://secdb.nttzen.cloud/cve/detail/CVE-2026-96654)
+
+Plex Media Server before 1.43.3.10861 does not correctly neutralize URL values included in 'searchOne,' allowing an attacker to call other plugins' functions and supply their own parameters.
+
+[![CVE-2026-96654](https://secdb.nttzen.cloud/cve/card/CVE-2026-96654)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-96654)
+
+### [CVE-2026-96655](https://secdb.nttzen.cloud/cve/detail/CVE-2026-96655)
+
+Plex Media Server before 1.43.3.10861 allows an authenticated user to request arbitrary internal or external addresses via the '/video/:/transcode/universal' path parameter.
+
+[![CVE-2026-96655](https://secdb.nttzen.cloud/cve/card/CVE-2026-96655)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-96655)
+
+### [CVE-2026-96656](https://secdb.nttzen.cloud/cve/detail/CVE-2026-96656)
+
+Plex Media Server before 1.43.3.10861 allows an admin user to write arbitrary files that may be executed on load. The preference TranscoderH264Options is appended verbatim to x264's option string on every transcode. At startup, all .so files are run without signature, execute bit, or symbol checks.
+
+[![CVE-2026-96656](https://secdb.nttzen.cloud/cve/card/CVE-2026-96656)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-96656)
+
+
+---
+
 ## PwnEscape
 
 **Disclosure date:** 2026-10-15
@@ -217,15 +252,7 @@ to return its existing transport at the limit.
 
 ### [CVE-2026-93485](https://secdb.nttzen.cloud/cve/detail/CVE-2026-93485)
 
-Improper neutralization of input during web page generation ('cross-site scripting') vulnerability in Automattic WordPress core allows DOM-Based XSS.
-
-
-This issue affects WordPress versions 7.1 before 7.1.1; 7.0 through 7.0.4; 6.9 through 6.9.7; 6.8 through 6.8.8; 6.7 through 6.7.7; 6.6 through 6.6.7; 6.5 through 6.5.10; 6.4 through 6.4.10; 6.3 through 6.3.10; 6.2 through 6.2.11; 6.1 through 6.1.12; 6.0 through 6.0.14; 5.9 through 5.9.16; 5.8 through 5.8.15; 5.7 through 5.7.17; 5.6 through 5.6.19; 5.5 through 5.5.20; 5.4 through 5.4.21; 5.3 through 5.3.23; 5.2 through 5.2.26; 5.1 through 5.1.24; 5.0 through 5.0.27; 4.9 through 4.9.31; 4.8 through 4.8.30; and 4.7 through 4.7.35.
-
-
-
-
-The Unauthenticated Stored XSS vulnerability in the WordPress core can be reproduced on a default WordPress installation. Comment moderation is disabled by default, and the requirement for commenters to have a previously approved comment can be bypassed.
+Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Automattic WordPress wordpress allows DOM-Based XSS.This issue affects WordPress: from n/a through 7.1.
 
 [![CVE-2026-93485](https://secdb.nttzen.cloud/cve/card/CVE-2026-93485)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-93485)
 
