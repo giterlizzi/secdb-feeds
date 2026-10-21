@@ -2,6 +2,29 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## PHP2Shell
+
+**Disclosure date:** 2026-10-20
+
+### References
+- https://www.php2shell.com/ (PHP2Shell - AI uncovers critical vulnerabilities in the backbone of the web, research)
+
+
+### [CVE-2026-109618](https://secdb.nttzen.cloud/cve/detail/CVE-2026-109618)
+
+PHP uses longjmp() for out-of-memory (OOM) errors to exit the current context and abort handling of the request. Some contexts may not properly account for this scenario and leave request memory in an uninitialized state before performing an allocation. The subsequent request cleanup procedure may read or branch on this memory. Multiple OOM strategies can consistently trigger this condition and lead to remote code execution (RCE).
+
+[![CVE-2026-109618](https://secdb.nttzen.cloud/cve/card/CVE-2026-109618)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-109618)
+
+### [CVE-2026-109619](https://secdb.nttzen.cloud/cve/detail/CVE-2026-109619)
+
+PHP has various global state that temporarily points into request memory. In some scenarios, global state may not be correctly reset, or may be repopulated after being reset. The global state may then refer to request memory even after it has been freed. Subsequent requests may read or branch on this stale state before it is fully initialized. Multiple strategies can trigger this condition and produce remote code execution (RCE).
+
+[![CVE-2026-109619](https://secdb.nttzen.cloud/cve/card/CVE-2026-109619)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-109619)
+
+
+---
+
 ## Plex2Shell
 
 **Disclosure date:** 2026-10-16
