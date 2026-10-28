@@ -2,6 +2,25 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## Broccoli2Shell
+
+**Disclosure date:** 2026-10-22
+
+### [CVE-2026-111497](https://secdb.nttzen.cloud/cve/detail/CVE-2026-111497)
+
+A buffer overflow vulnerability in the Brotli decoder (c/dec/decode.c) in Google Brotli versions 1.0.3 through 1.2.0 on all platforms allows a remote unauthenticated attacker to corrupt adjacent decoder state memory, disclose sensitive memory contents, cause a denial of service, or potentially execute arbitrary code using a crafted Brotli-compressed stream.
+
+
+
+
+
+Users need to update any Brotli libraries or binaries between 1.0.3 through 1.2.0 to the latest available version: 1.0.10 or 1.1.1 or 1.2.1.
+
+[![CVE-2026-111497](https://secdb.nttzen.cloud/cve/card/CVE-2026-111497)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-111497)
+
+
+---
+
 ## PHP2Shell
 
 **Disclosure date:** 2026-10-20
@@ -35,7 +54,7 @@ PHP has various global state that temporarily points into request memory. In som
 
 ### [CVE-2026-96652](https://secdb.nttzen.cloud/cve/detail/CVE-2026-96652)
 
-Plex Media Server before 1.43.3.10861 allows SSRF via '/player/timeline'. An attacker using any X-Plex-Token value can include a full URL in the 'protocol' parameter and force the Plex server to POST to the attacker's chosen destination.
+
 
 [![CVE-2026-96652](https://secdb.nttzen.cloud/cve/card/CVE-2026-96652)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-96652)
 
