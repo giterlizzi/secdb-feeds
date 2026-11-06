@@ -2,6 +2,19 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## SSHole
+
+**Disclosure date:** 2026-11-05
+
+### [CVE-2026-123158](https://secdb.nttzen.cloud/cve/detail/CVE-2026-123158)
+
+sshd in OpenSSH before 10.6p2 on Linux, when musl libc is used without PAM, lacks a workaround for a password authentication bypass (related to misinterpretation of whether a string is intended to be a password hash). For some configurations of accounts, any password between 256 and 1024 characters succeeds. An example of a platform using musl libc without PAM is Alpine Linux.
+
+[![CVE-2026-123158](https://secdb.nttzen.cloud/cve/card/CVE-2026-123158)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-123158)
+
+
+---
+
 ## Broccoli2Shell
 
 **Disclosure date:** 2026-10-22
@@ -54,7 +67,7 @@ PHP has various global state that temporarily points into request memory. In som
 
 ### [CVE-2026-96652](https://secdb.nttzen.cloud/cve/detail/CVE-2026-96652)
 
-
+Plex Media Server before 1.43.3.10861 allows SSRF via '/player/timeline'. An attacker using any X-Plex-Token value can include a full URL in the 'protocol' parameter and force the Plex server to POST to the attacker's chosen destination.
 
 [![CVE-2026-96652](https://secdb.nttzen.cloud/cve/card/CVE-2026-96652)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-96652)
 
