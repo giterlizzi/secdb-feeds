@@ -2,6 +2,69 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## Able2Shell
+
+**Disclosure date:** 2026-11-09
+
+### [CVE-2026-125878](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125878)
+
+Improper neutralization of input during web page generation ('cross-site scripting') vulnerability in N-able N-central allows Resource Injection.
+
+This issue affects N-central: before 26.4.1.
+
+[![CVE-2026-125878](https://secdb.nttzen.cloud/cve/card/CVE-2026-125878)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125878)
+
+### [CVE-2026-125879](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125879)
+
+Incorrect privilege assignment vulnerability in N-able N-central allows Privilege Escalation.
+
+This issue affects N-central: before 26.4.1.
+
+[![CVE-2026-125879](https://secdb.nttzen.cloud/cve/card/CVE-2026-125879)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125879)
+
+### [CVE-2026-125880](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125880)
+
+Improper neutralization of HTTP headers for scripting syntax vulnerability in N-able N-central allows Cross-Site Scripting (XSS).
+
+This issue affects N-central: before 26.4.1.
+
+[![CVE-2026-125880](https://secdb.nttzen.cloud/cve/card/CVE-2026-125880)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125880)
+
+### [CVE-2026-125881](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125881)
+
+Server-Side request forgery (SSRF) vulnerability in N-able N-central allows Server Side Request Forgery.
+
+This issue affects N-central: before 26.4.1.
+
+[![CVE-2026-125881](https://secdb.nttzen.cloud/cve/card/CVE-2026-125881)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125881)
+
+### [CVE-2026-125882](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125882)
+
+Relative path traversal vulnerability in N-able N-central allows Path Traversal.
+
+This issue affects N-central: before 26.4.1.
+
+[![CVE-2026-125882](https://secdb.nttzen.cloud/cve/card/CVE-2026-125882)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125882)
+
+### [CVE-2026-125883](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125883)
+
+Improper restriction of XML external entity reference vulnerability in N-able N-central allows XML Schema Poisoning.
+
+This issue affects N-central: before 26.4.1.
+
+[![CVE-2026-125883](https://secdb.nttzen.cloud/cve/card/CVE-2026-125883)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125883)
+
+### [CVE-2026-91000](https://secdb.nttzen.cloud/cve/detail/CVE-2026-91000)
+
+Missing authentication for critical function vulnerability in N-able N-central allows Privilege Escalation.
+
+This issue affects N-central: before 2026.4.1.
+
+[![CVE-2026-91000](https://secdb.nttzen.cloud/cve/card/CVE-2026-91000)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-91000)
+
+
+---
+
 ## SSHole
 
 **Disclosure date:** 2026-11-05
