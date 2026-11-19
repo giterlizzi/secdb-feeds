@@ -2,6 +2,88 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## NGINX2Root
+
+**Disclosure date:** 2026-11-18
+
+### References
+- https://www.wiz.io/blog/nginx-http2-rce-vulnerabilities (Unauthenticated Remote Code Execution in NGINX: CVE-2026-123633 and CVE-2026-123007, research)
+
+
+### [CVE-2026-113425](https://secdb.nttzen.cloud/cve/detail/CVE-2026-113425)
+
+When NGINX Plus or NGINX Open Source is configured as a mail proxy, undisclosed traffic can cause a use-after-free in an nginx worker process. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR.
+
+Impact:
+A remote unauthenticated attacker may crash an nginx worker process or corrupt its memory, disrupting service. Remote code execution is a potential impact. There is no control plane exposure; this is a data plane issue only.
+
+
+
+Note: Software versions which have reached End of Technical Support (EoTS) are not evaluated.
+
+[![CVE-2026-113425](https://secdb.nttzen.cloud/cve/card/CVE-2026-113425)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-113425)
+
+### [CVE-2026-121810](https://secdb.nttzen.cloud/cve/detail/CVE-2026-121810)
+
+Description:
+This issue affects NGINX Plus and NGINX Open Source configurations that use HTTP/3. A remote, unauthenticated attacker can cause a use-after-free condition in the NGINX worker process, leading to a restart. Exploitation also depends on conditions beyond the attacker’s control. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR.
+
+Impact:
+This vulnerability may allow remote attackers to cause a denial-of-service (DoS) on the NGINX system or to possibly trigger a code execution. There is no control plane exposure; this is a data plane issue only.
+
+
+
+Note: Software versions which have reached End of Technical Support (EoTS) are not evaluated.
+
+[![CVE-2026-121810](https://secdb.nttzen.cloud/cve/card/CVE-2026-121810)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-121810)
+
+### [CVE-2026-123007](https://secdb.nttzen.cloud/cve/detail/CVE-2026-123007)
+
+This issue affects NGINX Plus or NGINX Open Source configurations that use HTTP/2. When NGINX processes undisclosed traffic, the flow control window can exceed the allowed threshold, potentially resulting in a heap buffer overflow typically followed by an NGINX worker segmentation fault. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR.
+
+Impact: An attacker could leverage this vulnerability to crash the NGINX worker process, corrupt its memory, or potentially execute code remotely. There is no control plane exposure; this is a data plane issue only.
+
+
+
+Note: Software versions which have reached End of Technical Support (EoTS) are not evaluated.
+
+[![CVE-2026-123007](https://secdb.nttzen.cloud/cve/card/CVE-2026-123007)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-123007)
+
+### [CVE-2026-123633](https://secdb.nttzen.cloud/cve/detail/CVE-2026-123633)
+
+When NGINX Plus or NGINX Open Source is configured to use HTTP/2 for client connections and proxy client requests to a backend, a specially crafted request can result in use-after-free in the worker process, if this process is running low on worker_connections. Additionally, attackers can execute code on systems with Address Space Layout Randomization (ASLR) disabled or when the attacker can bypass ASLR.
+
+
+
+
+Impact:
+
+
+
+This vulnerability may allow remote attackers to cause a denial-of-service (DoS) on the NGINX system or may allow a code execution. There is no control plane exposure; this is a data plane issue only.
+
+
+
+Note: Software versions which have reached End of Technical Support (EoTS) are not evaluated.
+
+[![CVE-2026-123633](https://secdb.nttzen.cloud/cve/card/CVE-2026-123633)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-123633)
+
+### [CVE-2026-123634](https://secdb.nttzen.cloud/cve/detail/CVE-2026-123634)
+
+This issue occurs when NGINX Plus or NGINX Open Source is configured as a proxy, the proxied server name includes variables, and a Server Side Includes (SSI) or mirror directive sends a subrequest to a location that resolves the same server name. Under these conditions, a specially crafted HTTP request may cause a use-after-free condition in a worker process. An attacker may also be able to execute code if Address Space Layout Randomization (ASLR) is disabled or the attacker can bypass ASLR.
+
+Impact: 
+An attacker could leverage this vulnerability to crash the NGINX worker process, corrupt its memory, or perform remote code execution (RCE)
+
+
+
+Note: Software versions which have reached End of Technical Support (EoTS) are not evaluated.
+
+[![CVE-2026-123634](https://secdb.nttzen.cloud/cve/card/CVE-2026-123634)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-123634)
+
+
+---
+
 ## Java4Shell
 
 **Disclosure date:** 2026-11-17
