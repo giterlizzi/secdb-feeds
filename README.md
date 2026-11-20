@@ -2,6 +2,23 @@
 
 Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
 
+## phpAfterShell
+
+**Disclosure date:** 2026-11-19
+
+### [CVE-2026-126714](https://secdb.nttzen.cloud/cve/detail/CVE-2026-126714)
+
+Partially overwritten session files can lead to remote code execution.
+
+The files session save handler, which is the default, writes updated session data into the existing session file without first clearing it. If a write is interrupted, the file can contain the beginning of the new session followed by the end of the old one, and bytes of an ordinary string can later be unserialized as objects. An attacker who can influence the session data, for example through session upload progress, and interrupt a write at a suitable point may inject objects, which can lead to code execution when the application contains a suitable gadget chain. Session data can also be corrupted.
+
+This issue affects PHP versions before 8.2.36, 8.3.* before 8.3.37, 8.4.* before 8.4.28 and 8.5.* before 8.5.13.
+
+[![CVE-2026-126714](https://secdb.nttzen.cloud/cve/card/CVE-2026-126714)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-126714)
+
+
+---
+
 ## NGINX2Root
 
 **Disclosure date:** 2026-11-18
