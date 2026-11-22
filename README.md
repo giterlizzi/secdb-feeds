@@ -19,6 +19,19 @@ This issue affects PHP versions before 8.2.36, 8.3.* before 8.3.37, 8.4.* before
 
 ---
 
+## Ruby2Shell
+
+**Disclosure date:** 2026-11-19
+
+### [CVE-2026-132825](https://secdb.nttzen.cloud/cve/detail/CVE-2026-132825)
+
+Ruby before 3.3.14, 3.4.13, and 4.0.10 has a heap-based buffer overflow during case conversion. One byte can be written outside a buffer for, for example, ISO-8859-1 or Windows-1252.
+
+[![CVE-2026-132825](https://secdb.nttzen.cloud/cve/card/CVE-2026-132825)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-132825)
+
+
+---
+
 ## NGINX2Root
 
 **Disclosure date:** 2026-11-18
@@ -110,6 +123,23 @@ Note: Software versions which have reached End of Technical Support (EoTS) are n
 Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: Compiler).  Supported versions that are affected are Oracle Java SE: 8u511b33-perf, 17.0.21.0.3, 21.0.13.0.3, 25.0.5.0.3, 27.0.1.0.3; Oracle GraalVM for JDK: 17.0.21.0.3 and  21.0.13.0.3; Oracle GraalVM Enterprise Edition: 21.3.20.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in takeover of Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition. Note: This vulnerability can only be exploited by supplying data to APIs in the specified Component without using Untrusted Java Web Start applications or Untrusted Java applets, such as through a web service. CVSS 3.1 Base Score 8.1 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H).
 
 [![CVE-2026-114938](https://secdb.nttzen.cloud/cve/card/CVE-2026-114938)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-114938)
+
+
+---
+
+## Upload2Shell
+
+**Disclosure date:** 2026-11-17
+
+### References
+- https://pwn.ai/upload2shell/research.html (How We Hacked the Pipes - Upload2Shell, research)
+
+
+### [CVE-2026-125396](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125396)
+
+Ghostscript before 10.08.0 contains a -dSAFER bypass vulnerability in the .putgstringcopy procedure in gs_fonts.ps, which calls the privileged .forceput operator without checking operand types. Attackers can supply crafted PostScript or PDF documents that trigger a type error, recover .forceput via a custom error handler, and cause a use-after-free across save/restore to execute arbitrary code.
+
+[![CVE-2026-125396](https://secdb.nttzen.cloud/cve/card/CVE-2026-125396)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-125396)
 
 
 ---
