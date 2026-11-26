@@ -1,6 +1,56 @@
 # SecDB - Security Feeds
 
-Security feeds for ZEN SecDB (https://secdb.nttzen.cloud).
+Security feeds for SecDB (https://secdb.nttzen.cloud).
+
+## NFS2ROOT
+
+**Disclosure date:** 2026-11-25
+
+### References
+- https://opensec.in/blog/nfs2root-cve-2026-99362 (NFS2ROOT: a 12-year-old pre-auth remote root in the Linux kernel's NFS server, research)
+
+
+### [CVE-2026-99362](https://secdb.nttzen.cloud/cve/detail/CVE-2026-99362)
+
+In the Linux kernel, the following vulnerability has been resolved:
+
+nfsd: preflight SEQUENCE replies before accepting a slot
+
+nfsd4_sequence() narrows the reply buffer to the session's cached
+reply limit before it accepts the slot seqid. A client may negotiate
+ca_maxresponsesize_cached down to NFSD_MIN_HDR_SEQ_SZ, and
+nfsd4_alloc_slot() then gives every slot a zero-length sl_data[]. A
+COMPOUND tag can fill that narrowed buffer until it holds the
+SEQUENCE opcode but not the status word that follows.
+nfsd4_encode_operation() returns without running
+nfsd4_encode_sequence(), so cstate.data_offset stays zero. It leaves
+op->status at nfs_ok as well, so the COMPOUND is treated as having
+succeeded.
+
+nfsd4_store_cache_entry() declines to cache a lone SEQUENCE that
+returned an error. That test reads the status the operation
+reported, so it passes here. The copy starts at offset zero and
+takes the whole reply, RPC and COMPOUND headers included, into the
+zero-length sl_data[]. The COMPOUND tag is copied along with it, so
+the client picks most of the bytes written past the end of the slot:
+
+  BUG: KASAN: slab-out-of-bounds in read_bytes_from_xdr_buf+0x1bc/0x390
+  Write of size 80 at addr ffff888003a549cd by task kunit_try_catch/24
+   __asan_memcpy+0x38/0x60
+   read_bytes_from_xdr_buf+0x1bc/0x390
+   nfsd4_sequence_done+0x5b0/0x810
+   nfs4svc_encode_compoundres+0x1bf/0x240
+
+Check that the fixed-size SEQUENCE result, plus room for a following
+operation's error status, fits the negotiated limit before narrowing
+the buffer and consuming the slot seqid. The slot and its reply
+cache are left unchanged, as RFC 8881 Section 2.10.6.1.2 requires of
+an error returned from SEQUENCE.
+
+[![CVE-2026-99362](https://secdb.nttzen.cloud/cve/card/CVE-2026-99362)](https://secdb.nttzen.cloud/cve/detail/CVE-2026-99362)
+
+
+---
 
 ## phpAfterShell
 
@@ -2559,4 +2609,4 @@ The (1) TLS and (2) DTLS implementations in OpenSSL 1.0.1 before 1.0.1g do not p
 
 ---
 
-Visit [ZEN SecDB](https://secdb.nttzen.cloud).
+Visit [SecDB](https://secdb.nttzen.cloud).
